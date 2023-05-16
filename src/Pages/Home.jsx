@@ -70,23 +70,7 @@ const Home = () => {
     setIsHomeDecorSelected(isChecked);
   };
 
-  // let displayedProducts = isELectronicsSelected
-  //   ? sortedByRatings.filter((product) =>
-  //       ["smartphones", "laptops"].includes(product.category)
-  //     )
-  //   : isCosmeticsSelected
-  //   ? sortedByRatings.filter((product) =>
-  //       ["fragrances", "skincare"].includes(product.category)
-  //     )
-  //   : isGroceriesSelected
-  //   ? sortedByRatings.filter((product) => product.category === "groceries")
-  //   : isHomeDecorSelected
-  //   ? sortedByRatings.filter(
-  //       (product) => product.category === "home-decoration"
-  //     )
-  //   : sortedByRatings;
-
-  
+  //In Mail App or others apps in which we did/ used checkboxes before, more of than one info of the same product we were checking. For eg , in mail app, if we clicked on unread Msgs checkbox, all unread Msgs were getting displayed/fltered. And then if we clicked on Starred msg, starred property of the already filtered unreadMsgs was being checked. But here in this context below, if we try doing with with the previous logic, if we checkbox isElectronic, smartphones or laptops category products were getting filtered, and then we checkbox another categor like cosmetic at the same time, there won't be cosmetic category products in the already filtered Electronic products (becuase we ares setting new array with every filter as we have used Let and then reassigning). If we have to checkbox infos of more than one product, unlike before, we can do the below method. Bacsially below, we are using And logic. With every click on check, those properties that are checcked are getting added to the array and with every uncheck, those proerties are getting removied. And based on the array, we are displaying the data, and if array length is empty--that is when all are unchecked--all data is displayed.
 
   let displayedCategories = [];
 
