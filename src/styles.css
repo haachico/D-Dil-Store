@@ -128,9 +128,9 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  margin: 3rem 1rem;
-  padding: 5px;
-  height: 100%;
+  margin: 5px 5px;
+  padding: 2px;
+  height: 90%;
   box-shadow: 0 2px 4px rgba(229, 173, 173, 0.3);
 }
 
