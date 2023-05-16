@@ -149,7 +149,7 @@ const Home = () => {
               step="10000"
               value={maxPrice}
               onChange={handleMinPriceChange}
-              style={{ width: "100%" }}
+              style={{ width: "100%", marginBottom: "0px", padding: "0px" }}
             />
             <div
               style={{
