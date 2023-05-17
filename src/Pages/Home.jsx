@@ -280,7 +280,7 @@ const Home = () => {
                           value={isHomeDecorSelected}
                           onChange={(event) => handleHomeDecorCheckBox(event)}
                         />
-                        HOME DECOR
+                        Home Decor
                       </label>
                     </div>
                   </div>
@@ -426,7 +426,7 @@ const Home = () => {
                         value={isHomeDecorSelected}
                         onChange={(event) => handleHomeDecorCheckBox(event)}
                       />
-                      HOME DECOR
+                      Home Decor
                     </label>
                   </div>
                 </div>
