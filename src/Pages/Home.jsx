@@ -132,10 +132,7 @@ const Home = () => {
       <div className="home-body">
         <div>
           {isMobileView || isTabletView ? (
-            <div
-              className="filter--component"
-              style={{ display: isFilterOpen ? "block" : "none" }}
-            >
+            <>
               {isFilterOpen && (
                 <div className="filter--component">
                   <div>
@@ -290,7 +287,7 @@ const Home = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </>
           ) : (
             <div className="filter--component">
               <div>

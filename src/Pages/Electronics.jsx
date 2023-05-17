@@ -130,10 +130,7 @@ const Electronics = () => {
       <div className="home-body">
         <div>
           {isMobileView || isTabletView ? (
-            <div
-              className="filter--component"
-              style={{ display: isFilterOpen ? "block" : "none" }}
-            >
+            <>
               {isFilterOpen && (
                 <div className="filter--component">
                   <div>
@@ -242,53 +239,10 @@ const Electronics = () => {
                         </label>
                       </div>
                     </div>
-                    <div>
-                      <h3>CATEGORIES</h3>
-                      <div className="inputs">
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="Electronics"
-                            value={isELectronicsSelected}
-                            onChange={(event) =>
-                              handleELectronicsCheckBox(event)
-                            }
-                          />
-                          Electronics
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="Cosmetics"
-                            value={isCosmeticsSelected}
-                            onChange={(event) => handleCosmeticsCheckBox(event)}
-                          />
-                          Cosmetics
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="Groceries"
-                            value={isGroceriesSelected}
-                            onChange={(event) => handleGroceriesCheckBox(event)}
-                          />
-                          Groceries
-                        </label>
-                        <label>
-                          <input
-                            type="checkbox"
-                            name="HOME DECOR"
-                            value={isHomeDecorSelected}
-                            onChange={(event) => handleHomeDecorCheckBox(event)}
-                          />
-                          Home Decor
-                        </label>
-                      </div>
-                    </div>
                   </div>
                 </div>
               )}
-            </div>
+            </>
           ) : (
             <div className="filter--component">
               <div>
@@ -394,47 +348,6 @@ const Electronics = () => {
                         onChange={(event) => handleSelectRating(event)}
                       />
                       Below 3 stars
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <h3>CATEGORIES</h3>
-                  <div className="inputs">
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Electronics"
-                        value={isELectronicsSelected}
-                        onChange={(event) => handleELectronicsCheckBox(event)}
-                      />
-                      Electronics
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Cosmetics"
-                        value={isCosmeticsSelected}
-                        onChange={(event) => handleCosmeticsCheckBox(event)}
-                      />
-                      Cosmetics
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="Groceries"
-                        value={isGroceriesSelected}
-                        onChange={(event) => handleGroceriesCheckBox(event)}
-                      />
-                      Groceries
-                    </label>
-                    <label>
-                      <input
-                        type="checkbox"
-                        name="HOME DECOR"
-                        value={isHomeDecorSelected}
-                        onChange={(event) => handleHomeDecorCheckBox(event)}
-                      />
-                      Home Decor
                     </label>
                   </div>
                 </div>
