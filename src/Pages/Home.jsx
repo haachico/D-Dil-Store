@@ -19,6 +19,16 @@ const Home = () => {
   //   setIsPopUp((prevState) => !prevState);
   // };
 
+  const handleClearFilter = () => {
+    setSelectedSort("ALL");
+    setMaxPrice(100000);
+    setSelectedRating("5 STARS AND BELOW");
+    setIsELectronicsSelected(false);
+    setIsCosmeticsSelected(false);
+    setIsGroceriesSelected(false);
+    setIsHomeDecorSelected(false);
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768); // Adjust the breakpoint as needed
@@ -144,6 +154,12 @@ const Home = () => {
             >
               {isFilterOpen && (
                 <div>
+                  <button
+                    className="clear--filters"
+                    onClick={() => handleClearFilter()}
+                  >
+                    CLEAR
+                  </button>
                   <div>
                     <h3>PRICE</h3>
                     <div className="inputs">
@@ -291,6 +307,12 @@ const Home = () => {
             <div className="filter--component">
               <div>
                 <div>
+                  <button
+                    className="clear--filters"
+                    onClick={() => handleClearFilter()}
+                  >
+                    CLEAR
+                  </button>
                   <h3>PRICE</h3>
                   <div className="inputs">
                     <label>

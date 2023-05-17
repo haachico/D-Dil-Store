@@ -130,6 +130,7 @@ h3 {
   align-items: flex-start;
   margin: 5px 5px;
   padding: 2px;
+  flex: 1;
   height: 100%;
   box-shadow: 0 2px 4px rgba(229, 173, 173, 0.3);
 }
@@ -253,6 +254,9 @@ h3 {
   }
   .filter--btn {
     display: block;
+  }
+  .product--card {
+    flex: 1;
   }
   .product--card img {
     width: 100%;
