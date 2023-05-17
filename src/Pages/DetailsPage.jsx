@@ -20,7 +20,7 @@ const DetailsPage = () => {
       </div>
       <div className="product--details">
         <h1>Title : {product?.title}</h1>
-        <h2 style={{ marginBottom: "1rem" }}>Brand: {product?.brand}</h2>
+        <h2 style={{ marginBottom: "1rem" }}>Brand : {product?.brand}</h2>
         <hr />
         <div style={{ display: "flex", gap: "1rem", margin: "0px" }}>
           <h3>
