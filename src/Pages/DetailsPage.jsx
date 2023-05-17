@@ -67,7 +67,6 @@ const DetailsPage = () => {
             </h5>
             <div className="details--btn">
               <button>Add to cart</button>
-              <button>Add to wishlist</button>
             </div>
           </div>
         </div>

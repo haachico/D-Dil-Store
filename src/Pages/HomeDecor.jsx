@@ -356,7 +356,7 @@ const HomeDecor = () => {
             </div>
           )}
         </div>
-        <div style={{ marginTop: "1rems" }}>
+        <div style={{ marginTop: "1rem" }}>
           <Link to="/" className="back--button">
             &larr; Back
           </Link>

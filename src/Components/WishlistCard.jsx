@@ -3,7 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Context } from "..";
 
-const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
+const WishlistCard = ({
+  img,
+  id,
+  title,
+  rating,
+  price,
+  discountPercentage,
+}) => {
   const {
     cartItems,
     wishlistItems,
@@ -88,4 +95,4 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
   );
 };
 
-export default ProductCard;
+export default WishlistCard;

@@ -274,6 +274,18 @@ h3 {
   margin-top: 1rem;
 }
 
+.price--details {
+  display: flex;
+  gap: 1rem;
+  margin: 0px;
+  font-size: 12px;
+}
+
+.wishlist--items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 /* Styles for tablets (portrait) and up */
 @media screen and (min-width: 768px) {
   h1 {
@@ -450,5 +462,11 @@ h3 {
     align-items: center;
     justify-content: space-around;
     margin: 0 auto;
+  }
+  .wishlist--items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem;
   }
 }
