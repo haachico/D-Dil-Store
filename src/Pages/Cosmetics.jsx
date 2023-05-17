@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
@@ -358,7 +358,8 @@ const Cosmetics = () => {
         </div>
         <div>
           <Link to="/" className="back--button">
-            Back
+            {" "}
+            &larr; Back
           </Link>
 
           <div className="all--products">

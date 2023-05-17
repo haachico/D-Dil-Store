@@ -356,9 +356,9 @@ const HomeDecor = () => {
             </div>
           )}
         </div>
-        <div>
+        <div style={{ marginTop: "1rems" }}>
           <Link to="/" className="back--button">
-            Back
+            &larr; Back
           </Link>
 
           <div className="all--products">
@@ -374,6 +374,7 @@ const HomeDecor = () => {
                   rating={product.rating}
                   price={product.price}
                   key={product.id}
+                  discountPercentage={product.discountPercentage}
                 />
               ))}
           </div>

@@ -35,7 +35,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .header .logo {
@@ -154,6 +154,7 @@ h3 {
 }
 .product--card .rating {
   margin: 5px;
+  font-size: 1rem;
 }
 
 .filter--btn {
@@ -270,6 +271,7 @@ h3 {
 .back--button {
   text-decoration: none;
   padding: 5px;
+  margin-top: 1rem;
 }
 
 /* Styles for tablets (portrait) and up */

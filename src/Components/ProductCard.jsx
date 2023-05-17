@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Context } from "..";
 
-const ProductCard = ({ img, id, title, rating, price }) => {
+const ProductCard = ({ img, id, title, rating, price , discountPercentage}) => {
   const {
     cartItems,
     wishlistItems,
@@ -60,7 +60,19 @@ const ProductCard = ({ img, id, title, rating, price }) => {
       <img src={img} alt={title} />
       <h4>{title}</h4>
       <hr className="break--line" />
-      <p className="price"> ₹ {price * 70}</p>
+      <div style={{ display: "flex", gap: "1rem", margin: "0px" }}>
+        <h3>
+          Price : ₹{" "}
+          {Math.round(
+          price * 70 -
+              (price *70 * discountPercentage) / 100
+          )}
+        </h3>
+        <h3 style={{ textDecoration: "line-through", color: "gray" }}>
+          ₹ {price * 70}
+        </h3>
+        <h3 style={{ color: "green" }}>{discountPercentage}% off!</h3>
+      </div>
       <p className="rating">
         <i
           class="fa-solid fa-star"

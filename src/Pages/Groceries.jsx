@@ -356,9 +356,9 @@ const Groceries = () => {
             </div>
           )}
         </div>
-        <div>
+        <div style={{marginTop: "1rem"}}>
           <Link to="/" className="back--button">
-            Back
+            &larr; Back
           </Link>
 
           <div className="all--products">

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
@@ -442,9 +442,9 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div>
+        <div style={{ marginTop: "1rem" }}>
           <Link to="/" className="back--button">
-            Back
+            &larr; Back
           </Link>
 
           <div className="all--products">
@@ -457,6 +457,7 @@ const Home = () => {
                   rating={product.rating}
                   price={product.price}
                   key={product.id}
+                  discountPercentage={product.discountPercentage}
                 />
               </>
             ))}

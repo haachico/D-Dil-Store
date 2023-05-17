@@ -19,7 +19,7 @@ const DetailsPage = () => {
   console.log(location);
 
   return (
-    <div>
+    <div style={{ marginTop: "1rem" }}>
       <Link
         to={`${location?.state?.from?.pathname}`}
         relative="path"
