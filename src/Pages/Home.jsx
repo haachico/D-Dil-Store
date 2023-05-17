@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import {Link} from "react-router-dom"
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
@@ -441,19 +442,25 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="all--products">
-          {displayedProducts.map((product) => (
-            <>
-              <ProductCard
-                id={product.id}
-                title={product.title}
-                img={product.thumbnail}
-                rating={product.rating}
-                price={product.price}
-                key={product.id}
-              />
-            </>
-          ))}
+        <div>
+          <Link to="/" className="back--button">
+            Back
+          </Link>
+
+          <div className="all--products">
+            {displayedProducts.map((product) => (
+              <>
+                <ProductCard
+                  id={product.id}
+                  title={product.title}
+                  img={product.thumbnail}
+                  rating={product.rating}
+                  price={product.price}
+                  key={product.id}
+                />
+              </>
+            ))}
+          </div>
         </div>
       </div>
     </div>
