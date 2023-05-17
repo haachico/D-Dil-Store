@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { Context } from "..";
 
@@ -49,6 +49,8 @@ const ProductCard = ({ img, id, title, rating, price }) => {
     }
   };
 
+  let location = useLocation();
+
   return (
     <div className="product--card">
       <div className="product--icons">
@@ -67,7 +69,11 @@ const ProductCard = ({ img, id, title, rating, price }) => {
         {""}
         {rating} (5)
       </p>
-      <Link to={`/products/${id}`} className="viewDetails--btn">
+      <Link
+        to={`/products/${id}`}
+        state={{ from: location }}
+        className="viewDetails--btn"
+      >
         View Details
       </Link>
     </div>
