@@ -14,6 +14,7 @@ import Electronics from "./Pages/Electronics";
 import Cosmetics from "./Pages/Cosmetics";
 import Groceries from "./Pages/Groceries";
 import HomeDecor from "./Pages/HomeDecor";
+import DetailsPage from "./Pages/DetailsPage";
 
 export default function App() {
   return (
@@ -29,7 +30,7 @@ export default function App() {
           <Route path="cosmetics" element={<Cosmetics />} />
           <Route path="groceries" element={<Groceries />} />
           <Route path="homedecor" element={<HomeDecor />} />
-
+          <Route path="products/:productId" element={<DetailsPage />} />
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Reviews />} />
             <Route path="about" element={<About />} />

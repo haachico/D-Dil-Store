@@ -12,7 +12,7 @@ const Intro = () => {
     <div>
       <div className="intro--cover">
         <img src={introCoverImg} className="intro--coverImg" />
-        <Link to="/Home">Visit here.</Link>
+        <Link to="home">Visit here.</Link>
       </div>
       <h1 style={{ marginTop: "3rem" }}>SHOP BY CATEGORY</h1>
       <div className="categories--img">

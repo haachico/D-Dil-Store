@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { Context } from "..";
 
@@ -66,7 +67,9 @@ const ProductCard = ({ img, id, title, rating, price }) => {
         {""}
         {rating} (5)
       </p>
-      <button className="addCart--btn">View Details</button>
+      <Link to={`/products/${id}`} className="viewDetails--btn">
+        View Details
+      </Link>
     </div>
   );
 };
