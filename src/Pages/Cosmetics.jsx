@@ -444,7 +444,9 @@ const Cosmetics = () => {
         </div>
         <div className="all--products">
           {displayedProducts
-            .filter((product) => ["cosmetics"].includes(product.category))
+            .filter((product) =>
+              ["fragrances", "skincare"].includes(product.category)
+            )
             .map((product) => (
               <ProductCard
                 id={product.id}
