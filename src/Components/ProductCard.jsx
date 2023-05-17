@@ -4,37 +4,55 @@ import { Context } from "..";
 
 const ProductCard = ({ img, id, title, rating, price }) => {
   const {
-    isHearted,
-    isAddedToCCart,
-    handleHeartIconClick,
-    handleHeartedIconClick,
-    handleAddToCartIconClick,
-    handleAddedToCartIconClick,
+    cartItems,
+    wishlistItems,
+    handleAddToWishlist,
+    handleRemoveFromWishlist,
+    handleAddToCart,
+    handleRemoveFromCart,
   } = useContext(Context);
 
-  const heartReact = (
-    <i class="fa-regular fa-heart" onClick={handleHeartIconClick}></i>
-  );
-  const reactedHeart = (
-    <i class="fa-solid fa-heart" onClick={handleHeartedIconClick}></i>
-  );
+  const heartIcon = () => {
+    if (wishlistItems.map((product) => product.id === id).includes(true)) {
+      return (
+        <i
+          class="fa-solid fa-heart"
+          onClick={() => handleRemoveFromWishlist(id)}
+        ></i>
+      );
+    } else {
+      return (
+        <i
+          class="fa-regular fa-heart"
+          onClick={() => handleAddToWishlist(id)}
+        ></i>
+      );
+    }
+  };
 
-  const addToCart = (
-    <i class="fa-solid fa-cart-plus" onClick={handleAddToCartIconClick}></i>
-  );
-
-  const addedToCart = (
-    <i
-      class="fa-solid fa-cart-shopping"
-      onClick={handleAddedToCartIconClick}
-    ></i>
-  );
+  const cartIcon = () => {
+    if (cartItems.map((product) => product.id === id).includes(true)) {
+      return (
+        <i
+          class="fa-solid fa-cart-shopping"
+          onClick={() => handleRemoveFromCart(id)}
+        ></i>
+      );
+    } else {
+      return (
+        <i
+          class="fa-solid fa-cart-plus"
+          onClick={() => handleAddToCart(id)}
+        ></i>
+      );
+    }
+  };
 
   return (
     <div className="product--card">
       <div className="product--icons">
-        <p>{isHearted ? reactedHeart : heartReact}</p>
-        <p>{isAddedToCCart ? addedToCart : addToCart}</p>
+        {heartIcon()}
+        {cartIcon()}
       </div>
       <img src={img} alt={title} />
       <h4>{title}</h4>
@@ -48,7 +66,7 @@ const ProductCard = ({ img, id, title, rating, price }) => {
         {""}
         {rating} (5)
       </p>
-      <button className="addCart--btn">Add to cart</button>
+      {/* <button className="addCart--btn">Add to cart</button> */}
     </div>
   );
 };
