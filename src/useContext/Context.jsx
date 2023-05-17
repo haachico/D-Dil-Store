@@ -5,6 +5,24 @@ export const Context = createContext();
 
 export const Provider = ({ children }) => {
   const [data, setData] = useState([]);
+  const [isHearted, setIsHearted] = useState(false);
+  const [isAddedToCCart, setIsAddedToCart] = useState(false);
+
+  const handleHeartIconClick = () => {
+    setIsHearted(true);
+  };
+
+  const handleHeartedIconClick = () => {
+    setIsHearted(false);
+  };
+
+  const handleAddToCartIconClick = () => {
+    setIsAddedToCart(true);
+  };
+
+  const handleAddedToCartIconClick = () => {
+    setIsAddedToCart(false);
+  };
   const getData = async () => {
     try {
       const response = await allData;
@@ -21,7 +39,19 @@ export const Provider = ({ children }) => {
 
   return (
     <div>
-      <Context.Provider value={{ data }}>{children}</Context.Provider>
+      <Context.Provider
+        value={{
+          data,
+          isHearted,
+          isAddedToCCart,
+          handleHeartIconClick,
+          handleHeartedIconClick,
+          handleAddToCartIconClick,
+          handleAddedToCartIconClick,
+        }}
+      >
+        {children}
+      </Context.Provider>
     </div>
   );
 };
