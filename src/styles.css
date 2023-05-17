@@ -200,6 +200,17 @@ h3 {
   margin: 1rem;
   width: 5rem;
   height: 2rem;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.clear--filters {
+  background-color: red;
+  color: white;
+  padding: 5px;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* Styles for tablets (portrait) and up */
