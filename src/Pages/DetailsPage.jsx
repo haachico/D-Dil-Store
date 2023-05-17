@@ -23,19 +23,19 @@ const DetailsPage = () => {
         <h2 style={{ marginBottom: "1rem" }}>Brand: {product?.brand}</h2>
         <hr />
         <div style={{ display: "flex", gap: "1rem", margin: "0px" }}>
-          <h2>
+          <h3>
             Price : ₹{" "}
             {Math.round(
               product?.price * 70 -
                 (product?.price * 70 * product?.discountPercentage) / 100
             )}
-          </h2>
-          <h2 style={{ textDecoration: "line-through", color: "gray" }}>
+          </h3>
+          <h3 style={{ textDecoration: "line-through", color: "gray" }}>
             ₹ {product?.price * 70}
-          </h2>
-          <h2 style={{ color: "green" }}>
+          </h3>
+          <h3 style={{ color: "green" }}>
             {product?.discountPercentage}% off!
-          </h2>
+          </h3>
         </div>
 
         <p className="description">
