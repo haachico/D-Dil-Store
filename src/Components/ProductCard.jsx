@@ -66,7 +66,7 @@ const ProductCard = ({ img, id, title, rating, price }) => {
         {""}
         {rating} (5)
       </p>
-      {/* <button className="addCart--btn">Add to cart</button> */}
+      <button className="addCart--btn">View Details</button>
     </div>
   );
 };

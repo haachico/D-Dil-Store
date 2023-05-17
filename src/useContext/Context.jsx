@@ -8,6 +8,28 @@ export const Provider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [wishlistItems, setWishlistItems] = useState([]);
 
+  const [isMobileView, setIsMobileView] = useState(false);
+  const [isTabletView, setIsTabetView] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768); // Adjust the breakpoint as needed
+      setIsTabetView(window.innerWidth <= 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
   const getData = async () => {
     try {
       const response = await allData;
@@ -57,6 +79,10 @@ export const Provider = ({ children }) => {
           handleRemoveFromWishlist,
           handleAddToCart,
           handleRemoveFromCart,
+          isMobileView,
+          isTabletView,
+          toggleFilter,
+          isFilterOpen,
         }}
       >
         {children}
