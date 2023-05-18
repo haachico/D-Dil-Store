@@ -373,6 +373,7 @@ const Electronics = () => {
                   rating={product.rating}
                   price={product.price}
                   key={product.id}
+                  discountPercentage={product.discountPercentage}
                 />
               ))}
           </div>
