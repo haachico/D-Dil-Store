@@ -4,7 +4,7 @@ import { useParams, useLocation, Link } from "react-router-dom";
 import { Context } from "..";
 
 const DetailsPage = () => {
-  const { data, handleAddToCart } = useContext(Context);
+  const { data, handleAddToCart, cartItems } = useContext(Context);
 
   const { productId } = useParams();
 
@@ -66,9 +66,17 @@ const DetailsPage = () => {
               <strong>In stock</strong> : {product?.stock}
             </h5>
             <div className="details--btn">
-              <button onClick={() => handleAddToCart(product.id)}>
-                Add to cart
-              </button>
+              {cartItems
+                .map((product) => product.id == productId)
+                .includes(true) ? (
+                <Link to="/cart" className="go--to--cart--link">
+                  Go to cart
+                </Link>
+              ) : (
+                <button onClick={() => handleAddToCart(product.id)}>
+                  Add to cart
+                </button>
+              )}
             </div>
           </div>
         </div>

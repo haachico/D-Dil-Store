@@ -54,8 +54,8 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
   return (
     <div className="product--card">
       <div className="product--icons">
-        {heartIcon()}
-        {cartIcon()}
+        <p>{heartIcon()}</p>
+        <p> {cartIcon()}</p>
       </div>
       <img src={img} alt={title} />
       <h4>{title}</h4>

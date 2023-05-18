@@ -11,6 +11,7 @@ export const Provider = ({ children }) => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [isTabletView, setIsTabetView] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,6 +84,8 @@ export const Provider = ({ children }) => {
           isTabletView,
           toggleFilter,
           isFilterOpen,
+          quantity,
+          setQuantity,
         }}
       >
         {children}

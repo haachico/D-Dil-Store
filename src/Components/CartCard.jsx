@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { Context } from "..";
 
@@ -10,6 +10,8 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
     handleRemoveFromWishlist,
     handleAddToCart,
     handleRemoveFromCart,
+    quantity,
+    setQuantity,
   } = useContext(Context);
 
   const heartIcon = () => {
@@ -48,11 +50,19 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
     }
   };
 
+  const decreaseQty = () => {
+    setQuantity((prevState) => prevState - 1);
+  };
+
+  const increaseQty = () => {
+    setQuantity((prevState) => prevState + 1);
+  };
+
   return (
     <div className="product--card">
       <div className="product--icons">
-        {heartIcon()}
-        {cartIcon()}
+        <p>{heartIcon()}</p>
+        <p>{cartIcon()}</p>
       </div>
       <img src={img} alt={title} />
       <h4>{title}</h4>
@@ -74,6 +84,35 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
         {""}
         {rating} (5)
       </p>
+      <div className="setQuantity">
+        <p>
+          Quantity :{" "}
+          <span>
+            <button
+              onClick={decreaseQty}
+              style={{ margin: "10px", cursor: "pointer" }}
+            >
+              -
+            </button>
+          </span>
+          <span
+            style={{
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.3)",
+              padding: "0px 5px",
+            }}
+          >
+            {quantity > 0 ? quantity : 0}{" "}
+          </span>{" "}
+          <span>
+            <button
+              onClick={increaseQty}
+              style={{ margin: "10px", cursor: "pointer" }}
+            >
+              +
+            </button>
+          </span>
+        </p>
+      </div>
     </div>
   );
 };

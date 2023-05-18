@@ -9,6 +9,9 @@ const Header = () => {
         <img src={logoImg} alt="D-Dil-Dtore Logo" className="logo" />
       </NavLink>
       <nav>
+        <NavLink to="/home" style={{ letterSpacing: "2px" }}>
+          Explore
+        </NavLink>
         <NavLink to="host">
           <i class="fa-solid fa-info"></i>
         </NavLink>
