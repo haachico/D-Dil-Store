@@ -8,19 +8,21 @@ const Wishlist = () => {
   return wishlistItems.length === 0 ? (
     <h2>No items in wishlist.</h2>
   ) : (
-    <div className="wishlist--items">
+    <>
       <h3>My Wishlist : {wishlistItems.length}</h3>
-      {wishlistItems.map((product) => (
-        <ProductCard
-          img={product.thumbnail}
-          id={product.id}
-          title={product.title}
-          rating={product.rating}
-          price={product.price}
-          discountPercentage={product.discountPercentage}
-        />
-      ))}
-    </div>
+      <div className="wishlist--items">
+        {wishlistItems.map((product) => (
+          <ProductCard
+            img={product.thumbnail}
+            id={product.id}
+            title={product.title}
+            rating={product.rating}
+            price={product.price}
+            discountPercentage={product.discountPercentage}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 

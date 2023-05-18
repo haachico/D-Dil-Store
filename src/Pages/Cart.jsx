@@ -36,19 +36,22 @@ const Cart = () => {
           ))}
         </div>
       )}
-      <div>
+      <div className="bill">
         <h1>Billing Details</h1>
-        <div className="billing--details">
-          <div>
-            <p>Cart total : </p>
-            <p>Discount : </p>
-            <h3>Total Amount : </h3>
+        <div>
+          <div className="billing--details">
+            <div>
+              <p>Cart total : </p>
+              <p>Discount : </p>
+              <h3>Total Amount : </h3>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <p> ₹ {cartTotal}</p>
+              <p> ₹ {Math.round(totalDiscount)}</p>
+              <h3> ₹ {cartTotal - Math.round(totalDiscount)}</h3>
+            </div>
           </div>
-          <div>
-            <p> ₹ {cartTotal}</p>
-            <p> ₹ {Math.round(totalDiscount)}</p>
-            <h3> ₹ {cartTotal - Math.round(totalDiscount)}</h3>
-          </div>
+          <button className="checkout--btn">Check out</button>
         </div>
       </div>
     </div>
