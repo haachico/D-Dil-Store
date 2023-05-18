@@ -57,9 +57,30 @@ const Checkout = () => {
     if (isFormValid) {
       setIsContactFormShown(false);
       setContactsData([...contactsData, contact]);
+      setContact({
+        firstName: "",
+        lastName: "",
+        pincode: "",
+        city: "",
+        state: "",
+        address: "",
+        phoneNumber: "",
+      });
     } else {
       alert("*Please fill in all the fields");
     }
+  };
+
+  const handleClearClick = () => {
+    setContact({
+      firstName: "",
+      lastName: "",
+      pincode: "",
+      city: "",
+      state: "",
+      address: "",
+      phoneNumber: "",
+    });
   };
 
   console.log(contact, "Contact");
@@ -178,7 +199,7 @@ const Checkout = () => {
 
             <div className="form--btns">
               <button onClick={handleSaveClick}>Save</button>
-              <button>Clear</button>
+              <button onClick={handleClearClick}>Clear</button>
               <button onClick={handleCancelClick}>Cancel</button>
             </div>
           </form>

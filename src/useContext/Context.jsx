@@ -1,4 +1,6 @@
 import { createContext, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { allData } from "../allData";
 export const Context = createContext();
@@ -50,6 +52,9 @@ export const Provider = ({ children }) => {
       ...wishlistItems,
       ...data.filter((product) => product.id === id),
     ]);
+    toast.success("Item added to wishlist!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const handleRemoveFromWishlist = (id) => {
@@ -61,6 +66,9 @@ export const Provider = ({ children }) => {
       ...cartItems,
       ...data.filter((product) => product.id === id),
     ]);
+    toast.success("Item added to cart!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const handleRemoveFromCart = (id) => {
