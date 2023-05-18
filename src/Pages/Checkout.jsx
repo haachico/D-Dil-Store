@@ -223,7 +223,7 @@ const Checkout = () => {
             </div>
 
             <Link to="/checkout">
-              <button className="checkout--btn">Check out </button>
+              <button className="checkout--btn">Place oder</button>
             </Link>
           </div>
         </div>
