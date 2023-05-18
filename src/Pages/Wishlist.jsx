@@ -1,14 +1,17 @@
 import { useContext } from "react";
 
 import { Context } from "..";
-import WishlistCard from "../Components/WishlistCard";
+import ProductCard from "../Components/ProductCard";
 
 const Wishlist = () => {
   const { wishlistItems } = useContext(Context);
-  return (
+  return wishlistItems.length === 0 ? (
+    <h2>No items in wishlist.</h2>
+  ) : (
     <div className="wishlist--items">
+      <h3>My Wishlist : {wishlistItems.length}</h3>
       {wishlistItems.map((product) => (
-        <WishlistCard
+        <ProductCard
           img={product.thumbnail}
           id={product.id}
           title={product.title}

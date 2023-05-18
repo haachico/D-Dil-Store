@@ -289,6 +289,24 @@ h3 {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.cart--page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.billing--details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.billing--details p {
+  font-size: 15px;
+}
+
 /* Styles for tablets (portrait) and up */
 @media screen and (min-width: 768px) {
   h1 {
@@ -480,5 +498,21 @@ h3 {
   .product--card .rating {
     margin: 5px;
     font-size: 1rem;
+  }
+  .cart--page {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 2rem;
+  }
+  .billing--details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+  }
+
+  .billing--details p {
+    font-size: 18px;
   }
 }

@@ -1,16 +1,8 @@
-import { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
 
 import { Context } from "..";
 
-const WishlistCard = ({
-  img,
-  id,
-  title,
-  rating,
-  price,
-  discountPercentage,
-}) => {
+const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
   const {
     cartItems,
     wishlistItems,
@@ -56,8 +48,6 @@ const WishlistCard = ({
     }
   };
 
-  let location = useLocation();
-
   return (
     <div className="product--card">
       <div className="product--icons">
@@ -84,15 +74,8 @@ const WishlistCard = ({
         {""}
         {rating} (5)
       </p>
-      <Link
-        to={`/products/${id}`}
-        state={{ from: location }}
-        className="viewDetails--btn"
-      >
-        View Details
-      </Link>
     </div>
   );
 };
 
-export default WishlistCard;
+export default CartCard;
