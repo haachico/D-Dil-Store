@@ -14,7 +14,6 @@ const Checkout = () => {
     state: "",
     address: "",
     phoneNumber: "",
-    alternatePhoneNumber: "",
   });
 
   const [isContactFormShown, setIsContactFormShown] = useState(false);
@@ -63,6 +62,8 @@ const Checkout = () => {
     }
   };
 
+  console.log(contact, "Contact");
+
   const handleDelete = (name) => {
     setContactsData(contactsData.filter((e) => e.firstName !== name));
   };
@@ -80,9 +81,27 @@ const Checkout = () => {
                 onChange={(e) => setSelectedAddress(e.target.value)}
               />
               <span>
-                <p> Name: {`${e.firstName} ${e.lastName}`} </p>
-                <p> Address: {e.address} </p>
-                <p> Contact Number: {e.phoneNumber} </p>
+                <p>
+                  {" "}
+                  <strong>Name</strong>: {`${e.firstName} ${e.lastName}`}{" "}
+                </p>
+                <p>
+                  {" "}
+                  <strong>Address</strong>: {e.address}{" "}
+                </p>
+                <p>
+                  <strong>Pin code </strong>: {e.pincode}
+                </p>
+                <p>
+                  <strong>City</strong> : {e.city}
+                </p>
+                <p>
+                  <strong>State</strong>: {e.state}
+                </p>
+                <p>
+                  {" "}
+                  <strong>Contact Number</strong>: {e.phoneNumber}{" "}
+                </p>
                 <button
                   onClick={() => handleDelete(e.firstName)}
                   className="delete--address"
@@ -124,6 +143,30 @@ const Checkout = () => {
               onChange={(e) => handleChange(e)}
               required
             />
+            <label htmlFor="pincode">Pin code: </label>
+            <input
+              type="number"
+              id="pincode"
+              name="pincode"
+              value={contact.pincode}
+              onChange={(e) => handleChange(e)}
+            />
+            <label htmlFor="city">City : </label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={contact.city}
+              onChange={(e) => handleChange(e)}
+            />
+            <label htmlFor="state">State: </label>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              value={contact.state}
+              onChange={(e) => handleChange(e)}
+            />
             <label htmlFor="mobileNum">Contact No. :</label>
             <input
               type="text"
@@ -133,16 +176,6 @@ const Checkout = () => {
               onChange={(e) => handleChange(e)}
             />
 
-            <label htmlFor="alternateMobNum">
-              Alternative contact No. (optional):{" "}
-            </label>
-            <input
-              type="number"
-              id="alternateMobNum"
-              name="alternatePhoneNumber"
-              value={contact.alternatePhoneNumber}
-              onChange={(e) => handleChange(e)}
-            />
             <div className="form--btns">
               <button onClick={handleSaveClick}>Save</button>
               <button>Clear</button>
