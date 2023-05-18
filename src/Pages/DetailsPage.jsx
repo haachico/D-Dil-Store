@@ -4,7 +4,7 @@ import { useParams, useLocation, Link } from "react-router-dom";
 import { Context } from "..";
 
 const DetailsPage = () => {
-  const { data } = useContext(Context);
+  const { data, handleAddToCart } = useContext(Context);
 
   const { productId } = useParams();
 
@@ -66,7 +66,9 @@ const DetailsPage = () => {
               <strong>In stock</strong> : {product?.stock}
             </h5>
             <div className="details--btn">
-              <button>Add to cart</button>
+              <button onClick={() => handleAddToCart(product.id)}>
+                Add to cart
+              </button>
             </div>
           </div>
         </div>
