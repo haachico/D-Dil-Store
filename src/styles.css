@@ -390,6 +390,85 @@ h3 {
   font-size: 12px;
 }
 
+.check--out {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid black;
+  padding: 1rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.form input,
+.form .textArea {
+  width: 18rem;
+  padding: 12px;
+  margin-top: 5px;
+  margin-bottom: 1rem;
+}
+
+.form--btns {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+}
+
+.form--btns button {
+  background-color: red;
+  padding: 5px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.address--section label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid red;
+  width: 100%;
+  text-align: left;
+  gap: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.address--section p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.add--address--btn {
+  border: 2px solid red;
+  width: 15rem;
+  padding: 1rem;
+  background-color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete--address {
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+}
 /* Styles for tablets (portrait) and up */
 @media screen and (min-width: 768px) {
   h1 {
@@ -604,5 +683,10 @@ h3 {
 
   .billing--details p {
     font-size: 18px;
+  }
+  .check--out {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
