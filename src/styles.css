@@ -299,8 +299,10 @@ h3 {
 
 .bill {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  padding: 1rem;
-  width: 24rem;
+  padding: 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .billing--details {
