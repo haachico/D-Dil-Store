@@ -154,7 +154,7 @@ h3 {
 }
 .product--card .rating {
   margin: 5px;
-  font-size: 1rem;
+  font-size: 12px;
 }
 
 .filter--btn {
@@ -276,8 +276,11 @@ h3 {
 
 .price--details {
   display: flex;
-  gap: 1rem;
-  margin: 0px;
+  gap: 2px;
+}
+
+.price--details h4 {
+  margin-right: 4px;
   font-size: 12px;
 }
 
@@ -468,5 +471,14 @@ h3 {
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     margin: 2rem;
+  }
+
+  .price--details h4 {
+    margin-right: 4px;
+    font-size: 15px;
+  }
+  .product--card .rating {
+    margin: 5px;
+    font-size: 1rem;
   }
 }

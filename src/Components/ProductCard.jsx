@@ -61,13 +61,13 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
       <h4>{title}</h4>
       <hr className="break--line" />
       <div className="price--details">
-        <h3>
+        <h4>
           ₹ {Math.round(price * 70 - (price * 70 * discountPercentage) / 100)}
-        </h3>
-        <h3 style={{ textDecoration: "line-through", color: "gray" }}>
+        </h4>
+        <h4 style={{ textDecoration: "line-through", color: "gray" }}>
           ₹ {price * 70}
-        </h3>
-        <h3 style={{ color: "green" }}>{discountPercentage}% off!</h3>
+        </h4>
+        <h4 style={{ color: "green" }}>{discountPercentage}% off!</h4>
       </div>
       <p className="rating">
         <i
