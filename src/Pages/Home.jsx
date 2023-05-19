@@ -144,7 +144,7 @@ const Home = () => {
         onChange={(event) => setSearchText(event.target.value)}
         className="search"
       />
-      s
+
       {(isMobileView || isTabletView) && (
         <button onClick={toggleFilter} className="filter--btn">
           {" "}
