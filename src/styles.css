@@ -28,6 +28,19 @@ h3 {
   position: relative;
 }
 
+.main--page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main--page .search {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 0.8rem;
+}
+
 .header {
   height: 16rem;
   max-width: 100%;
@@ -593,6 +606,12 @@ h3 {
   .viewDetails--btn button {
     cursor: pointer;
   }
+  .main--page .search {
+    border: 1px solid black;
+    margin: 1rem;
+    width: 50%;
+    padding: 0.8rem;
+  }
 }
 
 /* Styles for laptops and up */
@@ -756,5 +775,11 @@ h3 {
     padding: 7px;
     border: none;
     width: 15rem;
+  }
+  .main--page .search {
+    border: 1px solid black;
+    margin: 1rem;
+    width: 50%;
+    padding: 0.8rem;
   }
 }

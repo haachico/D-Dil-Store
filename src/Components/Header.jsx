@@ -16,13 +16,7 @@ const Header = () => {
         {" "}
         <img src={logoImg} alt="D-Dil-Dtore Logo" className="logo" />
       </NavLink>
-      <div className="search">
-        <input
-          type="text"
-          placeholder=" Search "
-          onChange={(event) => setSearchText(event.target.value)}
-        />
-      </div>
+
       {console.log(searchText)}
       <div>
         <div>

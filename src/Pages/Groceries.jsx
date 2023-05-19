@@ -11,6 +11,7 @@ const Groceries = () => {
     toggleFilter,
     isFilterOpen,
     searchText,
+    setSearchText,
   } = useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
@@ -134,7 +135,14 @@ const Groceries = () => {
   );
 
   return (
-    <div>
+    <div className="main--page">
+      <input
+        type="text"
+        placeholder=" Search "
+        onChange={(event) => setSearchText(event.target.value)}
+        className="search"
+      />
+
       {(isMobileView || isTabletView) && (
         <button onClick={toggleFilter} className="filter--btn">
           {" "}

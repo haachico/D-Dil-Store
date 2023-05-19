@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Electronics = () => {
-  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen, searchText } =
+  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen, searchText, setSearchtext } =
     useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
@@ -128,7 +128,13 @@ const Electronics = () => {
   );
 
   return (
-    <div>
+    <div className="main--page">
+            <input
+        type="text"
+        placeholder=" Search "
+        onChange={(event) => setSearchText(event.target.value)}
+        className="search"
+      />
       {(isMobileView || isTabletView) && (
         <button onClick={toggleFilter} className="filter--btn">
           {" "}
