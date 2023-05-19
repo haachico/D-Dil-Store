@@ -2,9 +2,13 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const HostLayout = () => {
   return (
-    <div>
-      <NavLink to="/host">Reviews</NavLink> || {""}
-      <NavLink to="about">About</NavLink>
+    <div className="nested-routes">
+      <NavLink to="/host" className="review">
+        Reviews
+      </NavLink>
+      <NavLink to="about" className="about">
+        About us
+      </NavLink>
       <Outlet />
     </div>
   );

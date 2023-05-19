@@ -150,6 +150,27 @@ h3 {
   transform: scale(1.1);
 }
 
+.review--page,
+.about--page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.review--card,
+.about--us {
+  background-color: white;
+  border: 2px solid red;
+  padding: 2rem;
+  width: 14rem;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
 .all--products {
   margin-top: 3rem;
   display: grid;
@@ -532,19 +553,17 @@ h3 {
   cursor: pointer;
 }
 
-/* .search  {
-  display: block;
-  margin-bottom: 10px;
-  padding: 4px;
-  border: none;
-  width: 15rem;
-  border: 2px solid red;
-} */
-
 .auth--text {
   font-size: 12px;
   color: white;
   /* margin-bottom: 12px; */
+}
+
+.nested-routes a {
+  text-decoration: underline;
+  margin: 1rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
 }
 /* Styles for tablets (portrait) and up */
 @media screen and (min-width: 768px) {
@@ -633,6 +652,22 @@ h3 {
     width: 50%;
     padding: 0.8rem;
   }
+
+  .review--card,
+  .about--us {
+    background-color: white;
+    border: 2px solid red;
+    padding: 2rem;
+    width: 30rem;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+}
+
+.about--us p {
+  font-size: 14px;
 }
 
 /* Styles for laptops and up */
@@ -796,5 +831,16 @@ h3 {
     padding: 7px;
     border: 2px solid red;
     width: 15rem;
+  }
+
+  .review--card {
+    background-color: white;
+    border: 2px solid red;
+    padding: 2rem;
+    width: 30rem;
+    height: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    margin-bottom: 2rem;
+    text-align: left;
   }
 }
