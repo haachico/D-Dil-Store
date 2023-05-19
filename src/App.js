@@ -16,6 +16,7 @@ import Groceries from "./Pages/Groceries";
 import HomeDecor from "./Pages/HomeDecor";
 import DetailsPage from "./Pages/DetailsPage";
 import Checkout from "./Pages/Checkout";
+import Error from "./Pages/Error";
 
 export default function App() {
   return (
@@ -32,7 +33,8 @@ export default function App() {
           <Route path="groceries" element={<Groceries />} />
           <Route path="homedecor" element={<HomeDecor />} />
           <Route path="products/:productId" element={<DetailsPage />} />
-          <Route path="/checkout" element={<Checkout/>} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="*" element={<Error />} />
           <Route path="host" element={<HostLayout />}>
             <Route index element={<Reviews />} />
             <Route path="about" element={<About />} />

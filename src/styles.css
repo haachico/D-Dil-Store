@@ -105,9 +105,9 @@ h3 {
 .intro--cover {
   position: relative;
   margin-bottom: 4rem;
+  width: 100%;
 }
 .intro--coverImg {
-  width: 100%;
   height: 20rem;
   position: relative;
 }
