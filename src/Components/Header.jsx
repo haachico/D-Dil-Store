@@ -6,28 +6,30 @@ import { Context } from "..";
 import logoImg from "./logo.png";
 
 const Header = () => {
-  const { wishlistItems, cartItems } = useContext(Context);
+  const { wishlistItems, cartItems, searchText, setSearchText } =
+    useContext(Context);
   const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+
   return (
     <div className="header">
       <NavLink to="/">
         {" "}
         <img src={logoImg} alt="D-Dil-Dtore Logo" className="logo" />
       </NavLink>
-
       <div className="search">
-        <input type="text" />
+        <input
+          type="text"
+          placeholder=" Search "
+          onChange={(event) => setSearchText(event.target.value)}
+        />
       </div>
+      {console.log(searchText)}
       <div>
         <div>
           {isAuthenticated ? (
-            <p style={{ color: "white", fontSize: "14px" }}>
-              Welcome, {user.name}!
-            </p>
+            <p class="auth--text">Welcome, {user.name}!</p>
           ) : (
-            <p style={{ color: "white", fontSize: "14px" }}>
-              You are logged out. Please log in.
-            </p>
+            <p className="auth--text">You are logged out. Please log in.</p>
           )}
         </div>
 

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Cosmetics = () => {
-  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen } =
+  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen, searchText } =
     useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
@@ -118,6 +118,13 @@ const Cosmetics = () => {
     isCosmeticsSelected,
     isGroceriesSelected,
     isHomeDecorSelected
+  );
+
+  const displayedData = displayedProducts.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchText.toLowerCase())
   );
 
   return (
@@ -363,19 +370,19 @@ const Cosmetics = () => {
           </Link>
 
           <div className="all--products">
-            {displayedProducts
+            {displayedData
               .filter((product) =>
                 ["fragrances", "skincare"].includes(product.category)
               )
               .map((product) => (
                 <ProductCard
-                id={product.id}
-                title={product.title}
-                img={product.thumbnail}
-                rating={product.rating}
-                price={product.price}
-                key={product.id}
-                discountPercentage={product.discountPercentage}
+                  id={product.id}
+                  title={product.title}
+                  img={product.thumbnail}
+                  rating={product.rating}
+                  price={product.price}
+                  key={product.id}
+                  discountPercentage={product.discountPercentage}
                 />
               ))}
           </div>

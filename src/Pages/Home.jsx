@@ -1,13 +1,17 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Home = () => {
-  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen } =
-    useContext(Context);
+  const {
+    data,
+    isMobileView,
+    isTabletView,
+    toggleFilter,
+    isFilterOpen,
+    searchText,
+  } = useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
   const [maxPrice, setMaxPrice] = useState(100000);
@@ -122,6 +126,13 @@ const Home = () => {
     isCosmeticsSelected,
     isGroceriesSelected,
     isHomeDecorSelected
+  );
+
+  const displayedData = displayedProducts.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchText.toLowerCase())
   );
 
   return (
@@ -450,7 +461,7 @@ const Home = () => {
           </Link>
 
           <div className="all--products">
-            {displayedProducts.map((product) => (
+            {displayedData.map((product) => (
               <>
                 <ProductCard
                   id={product.id}

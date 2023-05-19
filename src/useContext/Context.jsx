@@ -14,6 +14,7 @@ export const Provider = ({ children }) => {
   const [isTabletView, setIsTabetView] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,6 +95,8 @@ export const Provider = ({ children }) => {
           isFilterOpen,
           quantity,
           setQuantity,
+          searchText,
+          setSearchText,
         }}
       >
         {children}

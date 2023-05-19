@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Electronics = () => {
-  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen } =
+  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen, searchText } =
     useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
@@ -118,6 +118,13 @@ const Electronics = () => {
     isCosmeticsSelected,
     isGroceriesSelected,
     isHomeDecorSelected
+  );
+
+  const displayedData = displayedProducts.filter(
+    (product) =>
+      product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchText.toLowerCase())
   );
 
   return (
@@ -356,12 +363,12 @@ const Electronics = () => {
             </div>
           )}
         </div>
-        <div style={{marginTop: "1rem"}}>
+        <div style={{ marginTop: "1rem" }}>
           <Link to="/" className="back--button">
             &larr; Back
           </Link>
           <div className="all--products">
-            {displayedProducts
+            {displayedData
               .filter((product) =>
                 ["smartphones", "laptops"].includes(product.category)
               )
