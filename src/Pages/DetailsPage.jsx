@@ -73,7 +73,10 @@ const DetailsPage = () => {
                   Go to cart
                 </Link>
               ) : (
-                <button onClick={() => handleAddToCart(product.id)}>
+                <button
+                  onClick={() => handleAddToCart(product.id)}
+                  style={{ fontWeight: "600" }}
+                >
                   Add to cart
                 </button>
               )}

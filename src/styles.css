@@ -104,6 +104,7 @@ h3 {
 
 .intro--cover {
   position: relative;
+  margin-bottom: 4rem;
 }
 .intro--coverImg {
   width: 100%;
@@ -136,6 +137,19 @@ h3 {
   font-weight: 900;
 }
 
+.category {
+  position: relative;
+  overflow: hidden;
+}
+
+.category img {
+  transition: transform 0.3s ease;
+}
+
+.category:hover img {
+  transform: scale(1.1);
+}
+
 .all--products {
   margin-top: 3rem;
   display: grid;
@@ -164,6 +178,7 @@ h3 {
 .product--card img {
   width: 100%;
   height: 10rem;
+  flex-grow: 1;
 }
 
 .product--card .break--line {
@@ -517,13 +532,14 @@ h3 {
   cursor: pointer;
 }
 
-.search input {
+/* .search  {
   display: block;
   margin-bottom: 10px;
   padding: 4px;
   border: none;
   width: 15rem;
-}
+  border: 2px solid red;
+} */
 
 .auth--text {
   font-size: 12px;
@@ -612,7 +628,7 @@ h3 {
     cursor: pointer;
   }
   .main--page .search {
-    border: 1px solid black;
+    border: 2px solid red;
     margin: 1rem;
     width: 50%;
     padding: 0.8rem;
@@ -774,17 +790,11 @@ h3 {
     margin: 1rem;
     padding: 1rem;
   }
-  .search input {
+  .search {
     display: block;
     margin-bottom: 10px;
     padding: 7px;
-    border: none;
+    border: 2px solid red;
     width: 15rem;
-  }
-  .main--page .search {
-    border: 1px solid black;
-    margin: 1rem;
-    width: 50%;
-    padding: 0.8rem;
   }
 }
