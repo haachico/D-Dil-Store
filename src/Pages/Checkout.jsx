@@ -18,8 +18,10 @@ const Checkout = () => {
 
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
-  const { cartItems, quantity, setQuantity } = useContext(Context);
+  const { cartItems, setCartItems, quantity, setQuantity } =
+    useContext(Context);
   const [selectedAddress, setSelectedAddress] = useState("");
+  const [buttonText, setButtonText] = useState("Place Order");
 
   console.log(cartItems, "CART ITEMS");
 
@@ -87,6 +89,19 @@ const Checkout = () => {
 
   const handleDelete = (name) => {
     setContactsData(contactsData.filter((e) => e.firstName !== name));
+  };
+
+  const handlePlaceOrder = () => {
+    if (selectedAddress === "") {
+      alert("Please select an address");
+    } else {
+      setButtonText("Ordering...");
+      setTimeout(() => {
+        alert("Order Placed!");
+        setButtonText("Place order");
+        setCartItems([]);
+      }, 3000);
+    }
   };
   return (
     <div className="check--out">
@@ -223,7 +238,9 @@ const Checkout = () => {
             </div>
 
             <Link to="/checkout">
-              <button className="checkout--btn">Place oder</button>
+              <button className="checkout--btn" onClick={handlePlaceOrder}>
+                {buttonText}
+              </button>
             </Link>
           </div>
         </div>
