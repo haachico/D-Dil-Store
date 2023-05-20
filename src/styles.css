@@ -36,7 +36,7 @@ h3 {
 }
 
 .main--page .search {
-  border: 1px solid black;
+  border: 2px solid red;
   margin: 1rem;
   padding: 0.8rem;
 }
@@ -51,6 +51,7 @@ h3 {
   align-items: center;
   gap: 5px;
   position: relative;
+
   /* margin-bottom: 1rem; */
 }
 
@@ -777,7 +778,7 @@ h3 {
     width: 250px;
     position: absolute;
     left: 10rem;
-    top: -12rem;
+    top: -14rem;
     margin: 0;
     border: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
