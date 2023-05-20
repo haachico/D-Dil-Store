@@ -1,10 +1,13 @@
 import { useContext } from "react";
 import { useParams, useLocation, Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import { Context } from "..";
 
 const DetailsPage = () => {
   const { data, handleAddToCart, cartItems } = useContext(Context);
+  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
+    useAuth0();
 
   const { productId } = useParams();
 
@@ -69,9 +72,18 @@ const DetailsPage = () => {
               {cartItems
                 .map((product) => product.id == productId)
                 .includes(true) ? (
-                <Link to="/cart" className="go--to--cart--link">
-                  Go to cart
-                </Link>
+                isAuthenticated ? (
+                  <Link to="/cart" className="go--to--cart--link">
+                    Go to cart
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => loginWithPopup()}
+                    className="go-to-cart-auth"
+                  >
+                    Go to cart
+                  </button>
+                )
               ) : (
                 <button
                   onClick={() => handleAddToCart(product.id)}

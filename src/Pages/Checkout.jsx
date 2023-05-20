@@ -18,8 +18,7 @@ const Checkout = () => {
 
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
-  const { cartItems, setCartItems, quantity, setQuantity } =
-    useContext(Context);
+  const { cartItems, setCartItems, quantity } = useContext(Context);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [buttonText, setButtonText] = useState("Place Order");
 
@@ -94,15 +93,19 @@ const Checkout = () => {
   const handlePlaceOrder = () => {
     if (selectedAddress === "") {
       alert("Please select an address");
+    } else if (cartItems.length === 0) {
+      alert("Please add items to cart!");
     } else {
       setButtonText("Ordering...");
       setTimeout(() => {
         alert("Order Placed!");
-        setButtonText("Place order");
         setCartItems([]);
+        console.log("Cart emptied!");
+        setButtonText("Place order");
       }, 3000);
     }
   };
+
   return (
     <div className="check--out">
       <div>
