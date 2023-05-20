@@ -24,7 +24,7 @@ const Header = () => {
           {isAuthenticated ? (
             <p class="auth--text">Welcome, {user.name}!</p>
           ) : (
-            <p className="auth--text">You are logged out. Please log in.</p>
+            <p className="auth--text"> You are not logged in.</p>
           )}
         </div>
 
