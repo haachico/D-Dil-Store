@@ -6,7 +6,7 @@ import ProductCard from "../Components/ProductCard";
 const Wishlist = () => {
   const { wishlistItems } = useContext(Context);
   return wishlistItems.length === 0 ? (
-    <h2>No items in wishlist.</h2>
+    <h4>No items in wishlist.</h4>
   ) : (
     <>
       <h3>My Wishlist : {wishlistItems.length}</h3>
