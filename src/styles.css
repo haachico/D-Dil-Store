@@ -2,6 +2,7 @@
 body {
   font-size: 14px;
   box-sizing: border-box;
+  margin: 0;
 }
 .App {
   font-family: "Poppins", sans-serif;
@@ -582,6 +583,35 @@ h3 {
   margin: 1rem;
   font-weight: 600;
   margin-bottom: 3rem;
+}
+
+.footer--page {
+  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 0px;
+  color: white;
+}
+
+.footer--page p {
+  font-size: 15px;
+}
+
+.footer--page p {
+  margin-bottom: 5px;
+}
+
+.footer--page .socialmedia--icons {
+  display: flex;
+  margin-top: 0;
+}
+
+.socialmedia--icons a {
+  color: white;
+  margin: 10px;
 }
 /* Styles for tablets (portrait) and up */
 @media screen and (min-width: 768px) {
