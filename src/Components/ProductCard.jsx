@@ -58,7 +58,7 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
         <p> {cartIcon()}</p>
       </div>
       <img src={img} alt={title} />
-      <h4 className="title">{title}</h4>
+      <h5 className="title">{title}</h5>
       <hr className="break--line" />
       <div className="price--details">
         <h4>
