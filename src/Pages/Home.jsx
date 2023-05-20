@@ -12,6 +12,7 @@ const Home = () => {
     isFilterOpen,
     searchText,
     setSearchText,
+    isError,
   } = useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
@@ -135,6 +136,15 @@ const Home = () => {
       product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
       product.category.toLowerCase().includes(searchText.toLowerCase())
   );
+  console.log(isError, "IS ERROR");
+
+  if (isError) {
+    return (
+      <div>
+        <h2>{isError.toString()}</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="main--page">

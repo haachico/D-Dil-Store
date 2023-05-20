@@ -15,6 +15,7 @@ export const Provider = ({ children }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [searchText, setSearchText] = useState("");
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,13 +35,13 @@ export const Provider = ({ children }) => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const getData = async () => {
+  const getData = () => {
     try {
-      const response = await allData;
+      const response = allData;
 
       setData(response.products);
     } catch (err) {
-      console.error(err);
+      setIsError(err);
     }
   };
 
@@ -97,6 +98,7 @@ export const Provider = ({ children }) => {
           setQuantity,
           searchText,
           setSearchText,
+          isError,
         }}
       >
         {children}
