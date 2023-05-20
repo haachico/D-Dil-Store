@@ -166,7 +166,7 @@ const Home = () => {
           {isMobileView || isTabletView ? (
             <>
               {isFilterOpen && (
-                <div>
+                <div style={{ height: "100%" }}>
                   <div className="filter--component">
                     <div>
                       <div>

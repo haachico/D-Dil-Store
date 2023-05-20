@@ -278,7 +278,7 @@ h3 {
   transform: translate(-50%, 50%);
   text-align: left;
   width: 14rem;
-  height: 30rem;
+  height: 100%;
 }
 
 .inputs {
