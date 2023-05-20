@@ -3,10 +3,16 @@ body {
   font-size: 14px;
   box-sizing: border-box;
   margin: 0;
+  position: relative;
 }
 .App {
   font-family: "Poppins", sans-serif;
   text-align: center;
+  min-height: 100vh;
+}
+
+.outlet {
+  flex-grow: 1;
 }
 
 h1 {
@@ -79,6 +85,7 @@ h3 {
   grid-row-gap: 10px;
   margin: 2rem;
   margin-bottom: 0px;
+  height: 31rem;
 }
 
 .categories--img img {
@@ -86,9 +93,9 @@ h3 {
   height: 8rem;
 }
 
-.category {
+/* .category {
   position: relative;
-}
+} */
 
 .category a {
   color: black;
@@ -591,13 +598,12 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
+  margin-top: 24rem;
   margin-bottom: 0px;
   color: white;
 }
-
 .footer--page p {
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .footer--page p {
@@ -650,7 +656,7 @@ h3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 1rem;
+
     grid-row-gap: 10px;
   }
   .categories--img img {

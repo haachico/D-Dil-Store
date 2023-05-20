@@ -37,7 +37,7 @@ const Intro = () => {
           data-testid="loader"
         />
       ) : (
-        <>
+        <div className="categories--section">
           <div className="intro--cover">
             <img src={introCoverImg} className="intro--coverImg" />
             <Link to="home">Visit here.</Link>
@@ -69,7 +69,7 @@ const Intro = () => {
               </Link>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
