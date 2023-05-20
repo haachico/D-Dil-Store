@@ -79,7 +79,15 @@ const DetailsPage = () => {
                 ) : (
                   <button
                     onClick={() => loginWithPopup()}
-                    className="go-to-cart-auth"
+                    style={{
+                      backgroundColor: "white",
+                      color: "red",
+                      border: "none",
+                      fontWeight: "700",
+                      boxShadow: "none",
+                      fontSize: "1.2rem",
+                      textDecoration: "underline",
+                    }}
                   >
                     Go to cart
                   </button>

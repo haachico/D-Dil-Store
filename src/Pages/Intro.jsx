@@ -35,6 +35,7 @@ const Intro = () => {
           size={300}
           aria-label="Loading Spinner"
           data-testid="loader"
+          marginTop="150px"
         />
       ) : (
         <div className="categories--section">

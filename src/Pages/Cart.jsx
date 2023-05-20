@@ -23,7 +23,7 @@ const Cart = () => {
   console.log(cartTotal, "CART TOTAL");
   console.log(totalDiscount, "TOTAL DISCOUNT");
   return (
-    <div>
+    <div style={{ marginTop: "100px" }}>
       {cartItems.length === 0 ? (
         <h4>No items in the cart.</h4>
       ) : (

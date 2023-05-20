@@ -8,7 +8,8 @@ import logoImg from "./logo.png";
 const Header = () => {
   const { wishlistItems, cartItems, searchText, setSearchText } =
     useContext(Context);
-  const { loginWithRedirect, logout, isAuthenticated, user } = useAuth0();
+  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
+    useAuth0();
 
   return (
     <div className="header">
@@ -50,10 +51,7 @@ const Header = () => {
               </NavLink>
             ) : (
               <NavLink to="">
-                <button
-                  onClick={() => loginWithRedirect()}
-                  className="auth--btn"
-                >
+                <button onClick={() => loginWithPopup()} className="auth--btn">
                   <i class="fa-solid fa-cart-shopping cartIcon"></i>
                 </button>
               </NavLink>

@@ -97,6 +97,7 @@ const Checkout = () => {
       alert("Please add items to cart!");
     } else {
       setButtonText("Ordering...");
+
       setTimeout(() => {
         alert("Order Placed!");
         setCartItems([]);

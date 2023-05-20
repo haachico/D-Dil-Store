@@ -91,6 +91,7 @@ export const Provider = ({ children }) => {
         value={{
           data,
           cartItems,
+          setCartItems,
           wishlistItems,
           handleAddToWishlist,
           handleRemoveFromWishlist,
