@@ -61,6 +61,9 @@ export const Provider = ({ children }) => {
 
   const handleRemoveFromWishlist = (id) => {
     setWishlistItems(wishlistItems.filter((product) => product.id !== id));
+    toast.success("Item removed from wishlist!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const handleAddToCart = (id) => {
@@ -75,6 +78,9 @@ export const Provider = ({ children }) => {
 
   const handleRemoveFromCart = (id) => {
     setCartItems(cartItems.filter((product) => product.id !== id));
+    toast.success("Item removed from cart!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
   console.log(data, "DATA");
   console.log(wishlistItems, "WISHLIST ITEMS");

@@ -1,4 +1,6 @@
 import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { Context } from "..";
 
@@ -52,10 +54,16 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
 
   const decreaseQty = () => {
     setQuantity((prevState) => prevState - 1);
+    toast.success("Item quantity decreased!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   const increaseQty = () => {
     setQuantity((prevState) => prevState + 1);
+    toast.success("Item quantity increased!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   };
 
   return (
@@ -68,13 +76,13 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
       <h4>{title}</h4>
       <hr className="break--line" />
       <div className="price--details">
-        <h4>
+        <h5>
           ₹ {Math.round(price * 70 - (price * 70 * discountPercentage) / 100)}
-        </h4>
-        <h4 style={{ textDecoration: "line-through", color: "gray" }}>
+        </h5>
+        <h5 style={{ textDecoration: "line-through", color: "gray" }}>
           ₹ {price * 70}
-        </h4>
-        <h4 style={{ color: "green" }}>{discountPercentage}% off!</h4>
+        </h5>
+        <h5 style={{ color: "green" }}>{discountPercentage}% off!</h5>
       </div>
       <p className="rating">
         <i
