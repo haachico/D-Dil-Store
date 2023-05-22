@@ -384,21 +384,25 @@ const Cosmetics = () => {
           </Link>
 
           <div className="all--products">
-            {displayedData
-              .filter((product) =>
-                ["fragrances", "skincare"].includes(product.category)
-              )
-              .map((product) => (
-                <ProductCard
-                  id={product.id}
-                  title={product.title}
-                  img={product.thumbnail}
-                  rating={product.rating}
-                  price={product.price}
-                  key={product.id}
-                  discountPercentage={product.discountPercentage}
-                />
-              ))}
+            {displayedData.length === 0 ? (
+              <h4>No product found!</h4>
+            ) : (
+              displayedData
+                .filter((product) =>
+                  ["fragrances", "skincare"].includes(product.category)
+                )
+                .map((product) => (
+                  <ProductCard
+                    id={product.id}
+                    title={product.title}
+                    img={product.thumbnail}
+                    rating={product.rating}
+                    price={product.price}
+                    key={product.id}
+                    discountPercentage={product.discountPercentage}
+                  />
+                ))
+            )}
           </div>
         </div>
       </div>

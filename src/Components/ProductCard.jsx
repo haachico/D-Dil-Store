@@ -89,3 +89,16 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
 };
 
 export default ProductCard;
+
+// .category {
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .category img {
+//   transition: transform 0.3s ease;
+// }
+
+// .category:hover img {
+//   transform: scale(1.1);
+// }
