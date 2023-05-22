@@ -44,7 +44,7 @@ const Cart = () => {
             </div>
           }
           <div className="bill">
-            <h1>Billing Details</h1>
+            <h3>Billing Details</h3>
             <div>
               <div className="billing--details">
                 <div>
