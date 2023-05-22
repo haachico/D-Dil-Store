@@ -36,6 +36,7 @@ const DetailsPage = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          height: "100vh",
         }}
       >
         <div className="details--page">
