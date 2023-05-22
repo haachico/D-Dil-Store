@@ -361,28 +361,12 @@ h3 {
   justify-content: center;
   text-align: left;
   margin: 0 auto;
-  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.3);
+
   margin-top: 2rem;
 }
 .details--page img {
   width: 14rem;
   height: 18rem;
-}
-
-.custom-toast {
-  background-color: green; /* Green color for "Add to Cart" */
-}
-
-.custom-toast--error {
-  background-color: red; /* Red color for "Remove from Cart" */
-}
-.product--details .description,
-.product--details .stock {
-  font-size: 1rem;
-}
-
-.remove--cart {
-  color: red;
 }
 
 .details--btn {
@@ -875,6 +859,7 @@ h3 {
     align-items: center;
     justify-content: space-around;
     margin: 0 auto;
+    box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.3);
   }
   .wishlist--items {
     display: grid;
