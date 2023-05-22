@@ -4,8 +4,15 @@ import { Link } from "react-router-dom";
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Electronics = () => {
-  const { data, isMobileView, isTabletView, toggleFilter, isFilterOpen, searchText, setSearchtext } =
-    useContext(Context);
+  const {
+    data,
+    isMobileView,
+    isTabletView,
+    toggleFilter,
+    isFilterOpen,
+    searchText,
+    setSearchtext,
+  } = useContext(Context);
 
   const [selectedSort, setSelectedSort] = useState("ALL");
   const [maxPrice, setMaxPrice] = useState(100000);
@@ -129,7 +136,7 @@ const Electronics = () => {
 
   return (
     <div className="main--page">
-            <input
+      <input
         type="text"
         placeholder=" Search "
         onChange={(event) => setSearchText(event.target.value)}
@@ -374,21 +381,25 @@ const Electronics = () => {
             &larr; Back
           </Link>
           <div className="all--products">
-            {displayedData
-              .filter((product) =>
-                ["smartphones", "laptops"].includes(product.category)
-              )
-              .map((product) => (
-                <ProductCard
-                  id={product.id}
-                  title={product.title}
-                  img={product.thumbnail}
-                  rating={product.rating}
-                  price={product.price}
-                  key={product.id}
-                  discountPercentage={product.discountPercentage}
-                />
-              ))}
+            {displayedData.length === 0 ? (
+              <h4>No product found!</h4>
+            ) : (
+              displayedData
+                .filter((product) =>
+                  ["smartphones", "laptops"].includes(product.category)
+                )
+                .map((product) => (
+                  <ProductCard
+                    id={product.id}
+                    title={product.title}
+                    img={product.thumbnail}
+                    rating={product.rating}
+                    price={product.price}
+                    key={product.id}
+                    discountPercentage={product.discountPercentage}
+                  />
+                ))
+            )}
           </div>
         </div>
       </div>

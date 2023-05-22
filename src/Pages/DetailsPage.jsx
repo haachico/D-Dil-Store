@@ -95,7 +95,7 @@ const DetailsPage = () => {
               ) : (
                 <button
                   onClick={() => handleAddToCart(product.id)}
-                  style={{ fontWeight: "600" }}
+                  className="add--to--cart--btn"
                 >
                   Add to cart
                 </button>

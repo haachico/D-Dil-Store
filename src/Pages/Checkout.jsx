@@ -108,144 +108,149 @@ const Checkout = () => {
   };
 
   return (
-    <div className="check--out">
-      <div>
-        {contactsData.map((e) => (
-          <div className="address--section">
-            <label>
+    <div style={{ padding: "1rem" }}>
+      <Link to="/cart" className="back--button">
+        &larr; <span>Back</span>
+      </Link>
+      <div className="check--out">
+        <div>
+          {contactsData.map((e) => (
+            <div className="address--section">
+              <label>
+                <input
+                  type="radio"
+                  name="selectedAddress"
+                  value={e.address}
+                  checked={selectedAddress === e.address}
+                  onChange={(e) => setSelectedAddress(e.target.value)}
+                />
+                <span>
+                  <p>
+                    {" "}
+                    <strong>Name</strong>: {`${e.firstName} ${e.lastName}`}{" "}
+                  </p>
+                  <p>
+                    {" "}
+                    <strong>Address</strong>: {e.address}{" "}
+                  </p>
+                  <p>
+                    <strong>Pin code </strong>: {e.pincode}
+                  </p>
+                  <p>
+                    <strong>City</strong> : {e.city}
+                  </p>
+                  <p>
+                    <strong>State</strong>: {e.state}
+                  </p>
+                  <p>
+                    {" "}
+                    <strong>Contact Number</strong>: {e.phoneNumber}{" "}
+                  </p>
+                  <button
+                    onClick={() => handleDelete(e.firstName)}
+                    className="delete--address"
+                  >
+                    Delete
+                  </button>
+                </span>
+              </label>
+            </div>
+          ))}
+          <button onClick={handleAddAddress} className="add--address--btn">
+            {" "}
+            <i class="fa-solid fa-plus"></i> {""}Add Address
+          </button>
+          {isContactFormShown && (
+            <form className="form">
+              <label htmlFor="firstName">First Name : </label>
               <input
-                type="radio"
-                name="selectedAddress"
-                value={e.address}
-                checked={selectedAddress === e.address}
-                onChange={(e) => setSelectedAddress(e.target.value)}
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={contact.firstName}
+                onChange={(e) => handleChange(e)}
               />
-              <span>
-                <p>
-                  {" "}
-                  <strong>Name</strong>: {`${e.firstName} ${e.lastName}`}{" "}
-                </p>
-                <p>
-                  {" "}
-                  <strong>Address</strong>: {e.address}{" "}
-                </p>
-                <p>
-                  <strong>Pin code </strong>: {e.pincode}
-                </p>
-                <p>
-                  <strong>City</strong> : {e.city}
-                </p>
-                <p>
-                  <strong>State</strong>: {e.state}
-                </p>
-                <p>
-                  {" "}
-                  <strong>Contact Number</strong>: {e.phoneNumber}{" "}
-                </p>
-                <button
-                  onClick={() => handleDelete(e.firstName)}
-                  className="delete--address"
-                >
-                  Delete
+              <label htmlFor="lastName">Last Name : </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={contact.lastName}
+                onChange={(e) => handleChange(e)}
+              />
+              <label htmlFor="address">Address : </label>
+              <textarea
+                className="textArea"
+                id="address"
+                name="address"
+                value={contact.address}
+                onChange={(e) => handleChange(e)}
+                required
+              />
+              <label htmlFor="pincode">Pin code: </label>
+              <input
+                type="number"
+                id="pincode"
+                name="pincode"
+                value={contact.pincode}
+                onChange={(e) => handleChange(e)}
+              />
+              <label htmlFor="city">City : </label>
+              <input
+                type="text"
+                id="city"
+                name="city"
+                value={contact.city}
+                onChange={(e) => handleChange(e)}
+              />
+              <label htmlFor="state">State: </label>
+              <input
+                type="text"
+                id="state"
+                name="state"
+                value={contact.state}
+                onChange={(e) => handleChange(e)}
+              />
+              <label htmlFor="mobileNum">Contact No. :</label>
+              <input
+                type="text"
+                id="mobileNum"
+                name="phoneNumber"
+                value={contact.phoneNumber}
+                onChange={(e) => handleChange(e)}
+              />
+
+              <div className="form--btns">
+                <button onClick={handleSaveClick}>Save</button>
+                <button onClick={handleClearClick}>Clear</button>
+                <button onClick={handleCancelClick}>Cancel</button>
+              </div>
+            </form>
+          )}
+        </div>
+        <div>
+          <div className="bill">
+            <h1>Billing Details</h1>
+            <div>
+              <div className="billing--details">
+                <div>
+                  <p>Cart total : </p>
+                  <p>Discount : </p>
+                  <h3>Total Amount : </h3>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <p> ₹ {cartTotal}</p>
+                  <p> ₹ {Math.round(totalDiscount)}</p>
+                  <h3> ₹ {cartTotal - Math.round(totalDiscount)}</h3>
+                </div>
+              </div>
+
+              <Link to="/checkout">
+                <button className="checkout--btn" onClick={handlePlaceOrder}>
+                  {buttonText}
                 </button>
-              </span>
-            </label>
-          </div>
-        ))}
-        <button onClick={handleAddAddress} className="add--address--btn">
-          {" "}
-          <i class="fa-solid fa-plus"></i> {""}Add Address
-        </button>
-        {isContactFormShown && (
-          <form className="form">
-            <label htmlFor="firstName">First Name : </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={contact.firstName}
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="lastName">Last Name : </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={contact.lastName}
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="address">Address : </label>
-            <textarea
-              className="textArea"
-              id="address"
-              name="address"
-              value={contact.address}
-              onChange={(e) => handleChange(e)}
-              required
-            />
-            <label htmlFor="pincode">Pin code: </label>
-            <input
-              type="number"
-              id="pincode"
-              name="pincode"
-              value={contact.pincode}
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="city">City : </label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              value={contact.city}
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="state">State: </label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              value={contact.state}
-              onChange={(e) => handleChange(e)}
-            />
-            <label htmlFor="mobileNum">Contact No. :</label>
-            <input
-              type="text"
-              id="mobileNum"
-              name="phoneNumber"
-              value={contact.phoneNumber}
-              onChange={(e) => handleChange(e)}
-            />
-
-            <div className="form--btns">
-              <button onClick={handleSaveClick}>Save</button>
-              <button onClick={handleClearClick}>Clear</button>
-              <button onClick={handleCancelClick}>Cancel</button>
+              </Link>
             </div>
-          </form>
-        )}
-      </div>
-      <div>
-        <div className="bill">
-          <h1>Billing Details</h1>
-          <div>
-            <div className="billing--details">
-              <div>
-                <p>Cart total : </p>
-                <p>Discount : </p>
-                <h3>Total Amount : </h3>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <p> ₹ {cartTotal}</p>
-                <p> ₹ {Math.round(totalDiscount)}</p>
-                <h3> ₹ {cartTotal - Math.round(totalDiscount)}</h3>
-              </div>
-            </div>
-
-            <Link to="/checkout">
-              <button className="checkout--btn" onClick={handlePlaceOrder}>
-                {buttonText}
-              </button>
-            </Link>
           </div>
         </div>
       </div>
