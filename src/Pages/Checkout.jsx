@@ -19,7 +19,7 @@ const Checkout = () => {
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
   const { cartItems, setCartItems, quantity } = useContext(Context);
-  const [selectedAddress, setSelectedAddress] = useState({});
+  const [selectedAddress, setSelectedAddress] = useState(null);
   const [buttonText, setButtonText] = useState("Place Order");
 
   console.log(cartItems, "CART ITEMS");
@@ -234,16 +234,18 @@ const Checkout = () => {
           )}
         </div>
         <div>
-          <div style={{ textAlign: "left", fontSize: "13px" }}>
-            <p style={{ fontSize: "14px", textAlign: "left" }}>
-              {" "}
-              <strong>Deliver to :</strong> <p></p>
-            </p>
-            <p>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</p>
-            <p style={{ fontSize: "13px", textAlign: "left" }}>
-              {`${selectedAddress.address}, ${selectedAddress.city} ${selectedAddress.pincode}, ${selectedAddress.state}. Contact No. : ${selectedAddress.phoneNumber}`}
-            </p>
-          </div>
+          {selectedAddress && (
+            <div style={{ textAlign: "left", fontSize: "13px" }}>
+              <p style={{ fontSize: "14px", textAlign: "left" }}>
+                {" "}
+                <strong>Deliver to :</strong> <p></p>
+              </p>
+              <p>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</p>
+              <p style={{ fontSize: "13px", textAlign: "left" }}>
+                {`${selectedAddress.address}, ${selectedAddress.city} ${selectedAddress.pincode}, ${selectedAddress.state}. Contact No. : ${selectedAddress.phoneNumber}`}
+              </p>
+            </div>
+          )}
           <div className="bill">
             <h3>Billing Details</h3>
             <div>
