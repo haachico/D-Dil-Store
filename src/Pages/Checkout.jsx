@@ -19,7 +19,7 @@ const Checkout = () => {
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
   const { cartItems, setCartItems, quantity } = useContext(Context);
-  const [selectedAddress, setSelectedAddress] = useState("");
+  const [selectedAddress, setSelectedAddress] = useState({});
   const [buttonText, setButtonText] = useState("Place Order");
 
   console.log(cartItems, "CART ITEMS");
@@ -120,11 +120,16 @@ const Checkout = () => {
                 <input
                   type="radio"
                   name="selectedAddress"
-                  value={e.address}
-                  checked={selectedAddress === e.address}
-                  onChange={(e) => setSelectedAddress(e.target.value)}
+                  value={JSON.stringify(e)}
+                  checked={
+                    JSON.stringify(selectedAddress) === JSON.stringify(e)
+                  }
+                  onChange={(e) =>
+                    setSelectedAddress(JSON.parse(e.target.value))
+                  }
                 />
                 <span>
+                  {console.log(selectedAddress, "SELECTED ADR")}
                   <p>
                     {" "}
                     <strong>Name</strong>: {`${e.firstName} ${e.lastName}`}{" "}
@@ -229,6 +234,16 @@ const Checkout = () => {
           )}
         </div>
         <div>
+          <div style={{ textAlign: "left", fontSize: "13px" }}>
+            <p style={{ fontSize: "14px", textAlign: "left" }}>
+              {" "}
+              <strong>Deliver to :</strong> <p></p>
+            </p>
+            <p>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</p>
+            <p style={{ fontSize: "13px", textAlign: "left" }}>
+              {`${selectedAddress.address}, ${selectedAddress.city} ${selectedAddress.pincode}, ${selectedAddress.state}. Contact No. : ${selectedAddress.phoneNumber}`}
+            </p>
+          </div>
           <div className="bill">
             <h3>Billing Details</h3>
             <div>
