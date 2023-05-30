@@ -29,14 +29,15 @@ const Intro = () => {
       }}
     >
       {isLoading ? (
-        <FadeLoader
-          color={"#FF0000"}
-          loading={isLoading}
-          size={300}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-          marginTop="150px"
-        />
+        <div style={{ marginTop: "5rem" }}>
+          <FadeLoader
+            color={"#FF0000"}
+            loading={isLoading}
+            size={300}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
       ) : (
         <div className="categories--section">
           <div className="intro--cover">
