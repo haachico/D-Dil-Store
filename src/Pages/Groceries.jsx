@@ -1,5 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
@@ -382,7 +383,13 @@ const Groceries = () => {
             &larr; Back
           </Link>
 
-          <div className="all--products">
+          <motion.div
+            className="all--products"
+            animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            exit={{ opacity: 0 }}
+            transform={{ duration: 0.5 }}
+          >
             {displayedData.length === 0 ? (
               <h4>No product found!</h4>
             ) : (
@@ -400,7 +407,7 @@ const Groceries = () => {
                   />
                 ))
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>

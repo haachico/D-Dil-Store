@@ -1,5 +1,6 @@
 import "./styles.css";
 import { Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import Intro from "./Pages/Intro";
 import Layout from "./Components/Layout";
@@ -21,26 +22,28 @@ import Error from "./Pages/Error";
 export default function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Intro />} />
-          <Route path="home" element={<Home />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="wishlist" element={<Wishlist />} />
-          <Route path="auth" element={<Login />} />
-          <Route path="electronics" element={<Electronics />} />
-          <Route path="cosmetics" element={<Cosmetics />} />
-          <Route path="groceries" element={<Groceries />} />
-          <Route path="homedecor" element={<HomeDecor />} />
-          <Route path="products/:productId" element={<DetailsPage />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="*" element={<Error />} />
-          <Route path="host" element={<HostLayout />}>
-            <Route index element={<Reviews />} />
-            <Route path="about" element={<About />} />
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Intro />} />
+            <Route path="home" element={<Home />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="wishlist" element={<Wishlist />} />
+            <Route path="auth" element={<Login />} />
+            <Route path="electronics" element={<Electronics />} />
+            <Route path="cosmetics" element={<Cosmetics />} />
+            <Route path="groceries" element={<Groceries />} />
+            <Route path="homedecor" element={<HomeDecor />} />
+            <Route path="products/:productId" element={<DetailsPage />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="*" element={<Error />} />
+            <Route path="host" element={<HostLayout />}>
+              <Route index element={<Reviews />} />
+              <Route path="about" element={<About />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
+        </Routes>
+      </AnimatePresence>
     </div>
   );
 }

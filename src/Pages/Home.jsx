@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
@@ -491,7 +492,12 @@ const Home = () => {
               <h4 style={{ textAlign: "center" }}>No product found!</h4>
             ) : (
               displayedData.map((product) => (
-                <>
+                <motion.div
+                  animate={{ opacity: 1 }}
+                  initial={{ opacity: 0 }}
+                  exit={{ opacity: 0 }}
+                  transform={{ duration: 0.5 }}
+                >
                   <ProductCard
                     id={product.id}
                     title={product.title}
@@ -501,7 +507,7 @@ const Home = () => {
                     key={product.id}
                     discountPercentage={product.discountPercentage}
                   />
-                </>
+                </motion.div>
               ))
             )}
           </div>
