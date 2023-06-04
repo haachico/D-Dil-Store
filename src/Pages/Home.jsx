@@ -24,10 +24,6 @@ const Home = () => {
   const [isGroceriesSelected, setIsGroceriesSelected] = useState(false);
   const [isHomeDecorSelected, setIsHomeDecorSelected] = useState(false);
 
-  // const handlePopupClick = () => {
-  //   setIsPopUp((prevState) => !prevState);
-  // };
-
   console.log(isFilterOpen, "ISFILTER OPEN");
 
   const handleClearFilter = () => {
@@ -39,6 +35,8 @@ const Home = () => {
     setIsGroceriesSelected(false);
     setIsHomeDecorSelected(false);
   };
+
+  console.log(isELectronicsSelected, "ELECTRONIC SELECTED");
 
   const handleSortClick = (e) => {
     setSelectedSort(e.target.value);
@@ -123,13 +121,6 @@ const Home = () => {
       : displayedProducts.filter((product) =>
           displayedCategories.includes(product.category)
         );
-
-  console.log(
-    isELectronicsSelected,
-    isCosmeticsSelected,
-    isGroceriesSelected,
-    isHomeDecorSelected
-  );
 
   const displayedData = displayedProducts.filter(
     (product) =>
@@ -446,6 +437,7 @@ const Home = () => {
                         name="Electronics"
                         value={isELectronicsSelected}
                         onChange={(event) => handleELectronicsCheckBox(event)}
+                        checked={isELectronicsSelected}
                       />
                       Electronics
                     </label>
@@ -455,6 +447,7 @@ const Home = () => {
                         name="Cosmetics"
                         value={isCosmeticsSelected}
                         onChange={(event) => handleCosmeticsCheckBox(event)}
+                        checked={isCosmeticsSelected}
                       />
                       Cosmetics
                     </label>
@@ -463,6 +456,7 @@ const Home = () => {
                         type="checkbox"
                         name="Groceries"
                         value={isGroceriesSelected}
+                        checked={isGroceriesSelected}
                         onChange={(event) => handleGroceriesCheckBox(event)}
                       />
                       Groceries
@@ -472,6 +466,7 @@ const Home = () => {
                         type="checkbox"
                         name="HOME DECOR"
                         value={isHomeDecorSelected}
+                        checked={isHomeDecorSelected}
                         onChange={(event) => handleHomeDecorCheckBox(event)}
                       />
                       Home Decor
