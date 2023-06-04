@@ -19,7 +19,7 @@ const Checkout = () => {
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
   const { cartItems, setCartItems, quantity } = useContext(Context);
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState("");
   const [buttonText, setButtonText] = useState("Place Order");
 
   console.log(cartItems, "CART ITEMS");
