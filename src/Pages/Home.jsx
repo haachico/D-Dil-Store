@@ -171,7 +171,6 @@ const Home = () => {
                         <h3>PRICE</h3>
                         <div className="inputs">
                           <label>
-                            High to Low
                             <input
                               type="radio"
                               name="HIGH TO LOW"
@@ -179,9 +178,9 @@ const Home = () => {
                               checked={selectedSort === "HIGH TO LOW"}
                               onChange={(event) => handleSortClick(event)}
                             />
+                            High to Low
                           </label>
                           <label>
-                            Low to High
                             <input
                               type="radio"
                               name="LOW TO HIGH"
@@ -189,6 +188,7 @@ const Home = () => {
                               checked={selectedSort === "LOW TO HIGH"}
                               onChange={(event) => handleSortClick(event)}
                             />
+                            Low to High
                           </label>
                         </div>
                       </div>

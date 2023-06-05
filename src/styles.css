@@ -331,6 +331,10 @@ h3 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.clear--filters:hover {
+  box-shadow: none;
+}
+
 .product--icons {
   display: flex;
   flex-direction: row;
