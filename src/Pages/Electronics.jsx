@@ -43,9 +43,9 @@ const Electronics = () => {
 
   const sortedProducts =
     selectedSort === "HIGH TO LOW"
-      ? data.sort((a, b) => b.price - a.price)
+      ? [...data].sort((a, b) => b.price - a.price)
       : selectedSort === "LOW TO HIGH"
-      ? data.sort((a, b) => a.price - b.price)
+      ? [...data].sort((a, b) => a.price - b.price)
       : data;
 
   const handleMinPriceChange = (event) => {
