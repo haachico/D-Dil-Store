@@ -670,6 +670,8 @@ h3 {
   padding: 3rem;
   margin-top: 4rem;
   position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .footer--div h1 {
