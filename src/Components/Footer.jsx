@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -53,21 +54,27 @@ function Footer() {
         </div>
         <div className="list--div">
           <ul className="socialmedia--icons">
-            <span>
-              <li>
-                <i class="fa-brands fa-instagram"></i>
-              </li>
-            </span>
-            <span>
-              <li>
-                <i class="fa-brands fa-facebook-f"></i>
-              </li>
-            </span>
-            <span>
-              <li>
-                <i class="fa-brands fa-twitter"></i>
-              </li>
-            </span>
+            <Link to="https://www.instagram.com/haachico/">
+              <span>
+                <li>
+                  <i class="fa-brands fa-instagram"></i>
+                </li>
+              </span>
+            </Link>
+            <Link to="https://www.facebook.com/nilesh.kokare.7/">
+              <span>
+                <li>
+                  <i class="fa-brands fa-facebook-f"></i>
+                </li>
+              </span>
+            </Link>
+            <Link to="https://twitter.com/haachico">
+              <span>
+                <li>
+                  <i class="fa-brands fa-twitter"></i>
+                </li>
+              </span>
+            </Link>
           </ul>
         </div>
       </div>
