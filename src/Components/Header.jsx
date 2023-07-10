@@ -67,7 +67,7 @@ const Header = () => {
                   }
                   className="auth--btn"
                 >
-                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
               </NavLink>
             ) : (
@@ -76,7 +76,7 @@ const Header = () => {
                   onClick={() => loginWithRedirect()}
                   className="auth--btn"
                 >
-                  <i class="fa-solid fa-user"></i>
+                  <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
               </NavLink>
             )}
