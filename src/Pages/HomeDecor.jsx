@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import ProductCard from "../Components/ProductCard";
+import Freeloader from "../Components/Freeloader";
 import { Context } from "..";
 const HomeDecor = () => {
   const {
@@ -22,10 +23,18 @@ const HomeDecor = () => {
   const [isCosmeticsSelected, setIsCosmeticsSelected] = useState(false);
   const [isGroceriesSelected, setIsGroceriesSelected] = useState(false);
   const [isHomeDecorSelected, setIsHomeDecorSelected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const handlePopupClick = () => {
   //   setIsPopUp((prevState) => !prevState);
   // };
+
+  useEffect(() => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+  }, []);
 
   const handleClearFilter = () => {
     setSelectedSort("ALL");
@@ -139,21 +148,137 @@ const HomeDecor = () => {
     <div className="main--page">
       <input
         type="text"
-        placeholder=" Search "
+        placeholder=" Search with product name"
         onChange={(event) => setSearchText(event.target.value)}
         className="search"
       />
-      {(isMobileView || isTabletView) && (
-        <button onClick={toggleFilter} className="filter--btn">
-          {" "}
-          Filter <i class="fa-solid fa-filter"></i>
-        </button>
-      )}
-      <div className="home-body">
+      {isLoading ? (
+        <Freeloader />
+      ) : (
         <div>
-          {isMobileView || isTabletView ? (
-            <>
-              {isFilterOpen && (
+          {(isMobileView || isTabletView) && (
+            <button onClick={toggleFilter} className="filter--btn">
+              {" "}
+              Filter <i class="fa-solid fa-filter"></i>
+            </button>
+          )}
+          <div className="home-body">
+            <div>
+              {isMobileView || isTabletView ? (
+                <>
+                  {isFilterOpen && (
+                    <div className="filter--component">
+                      <div>
+                        <div>
+                          <button
+                            className="clear--filters"
+                            onClick={() => handleClearFilter()}
+                          >
+                            CLEAR
+                          </button>
+                          <h3>PRICE</h3>
+                          <div className="inputs">
+                            <label>
+                              <input
+                                type="radio"
+                                name="HIGH TO LOW"
+                                value="HIGH TO LOW"
+                                checked={selectedSort === "HIGH TO LOW"}
+                                onChange={(event) => handleSortClick(event)}
+                              />
+                              High to Low
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="LOW TO HIGH"
+                                value="LOW TO HIGH"
+                                checked={selectedSort === "LOW TO HIGH"}
+                                onChange={(event) => handleSortClick(event)}
+                              />
+                              Low to High
+                            </label>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 style={{ marginBottom: "10px" }}>PRICE RANGE</h3>
+                          <input
+                            type="range"
+                            min="10000"
+                            max="100000"
+                            step="10000"
+                            value={maxPrice}
+                            onChange={handleMinPriceChange}
+                            style={{
+                              width: "100%",
+                              marginBottom: "0px",
+                              padding: "0px",
+                            }}
+                          />
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              marginTop: "0px",
+                            }}
+                          >
+                            <p>10000</p>
+
+                            <p>
+                              <strong>{maxPrice}</strong>
+                            </p>
+                          </div>
+                        </div>
+                        <div>
+                          <h3>FILTER BY RATINGS</h3>
+                          <div className="inputs">
+                            <label>
+                              <input
+                                type="radio"
+                                name="5 STARS AND BELOW"
+                                value="5 STARS AND BELOW"
+                                checked={selectedRating === "5 STARS AND BELOW"}
+                                onChange={(event) => handleSelectRating(event)}
+                              />
+                              5 stars and below
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="4 STARS AND BELOW"
+                                value="4 STARS AND BELOW"
+                                checked={selectedRating === "4 STARS AND BELOW"}
+                                onChange={(event) => handleSelectRating(event)}
+                              />
+                              4 stars and below
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="3 STARS AND BELOW"
+                                value="3 STARS AND BELOW"
+                                checked={selectedRating === "3 STARS AND BELOW"}
+                                onChange={(event) => handleSelectRating(event)}
+                              />
+                              3 stars and below
+                            </label>
+                            <label>
+                              <input
+                                type="radio"
+                                name="BELOW 3 STARS"
+                                value="BELOW 3 STARS"
+                                checked={selectedRating === "BELOW 3 STARS"}
+                                onChange={(event) => handleSelectRating(event)}
+                              />
+                              Below 3 stars
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </>
+              ) : (
                 <div className="filter--component">
                   <div>
                     <div>
@@ -166,6 +291,7 @@ const HomeDecor = () => {
                       <h3>PRICE</h3>
                       <div className="inputs">
                         <label>
+                          High to Low
                           <input
                             type="radio"
                             name="HIGH TO LOW"
@@ -173,9 +299,9 @@ const HomeDecor = () => {
                             checked={selectedSort === "HIGH TO LOW"}
                             onChange={(event) => handleSortClick(event)}
                           />
-                          High to Low
                         </label>
                         <label>
+                          Low to High
                           <input
                             type="radio"
                             name="LOW TO HIGH"
@@ -183,7 +309,6 @@ const HomeDecor = () => {
                             checked={selectedSort === "LOW TO HIGH"}
                             onChange={(event) => handleSortClick(event)}
                           />
-                          Low to High
                         </label>
                       </div>
                     </div>
@@ -264,153 +389,43 @@ const HomeDecor = () => {
                   </div>
                 </div>
               )}
-            </>
-          ) : (
-            <div className="filter--component">
-              <div>
-                <div>
-                  <button
-                    className="clear--filters"
-                    onClick={() => handleClearFilter()}
-                  >
-                    CLEAR
-                  </button>
-                  <h3>PRICE</h3>
-                  <div className="inputs">
-                    <label>
-                      High to Low
-                      <input
-                        type="radio"
-                        name="HIGH TO LOW"
-                        value="HIGH TO LOW"
-                        checked={selectedSort === "HIGH TO LOW"}
-                        onChange={(event) => handleSortClick(event)}
-                      />
-                    </label>
-                    <label>
-                      Low to High
-                      <input
-                        type="radio"
-                        name="LOW TO HIGH"
-                        value="LOW TO HIGH"
-                        checked={selectedSort === "LOW TO HIGH"}
-                        onChange={(event) => handleSortClick(event)}
-                      />
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  <h3 style={{ marginBottom: "10px" }}>PRICE RANGE</h3>
-                  <input
-                    type="range"
-                    min="10000"
-                    max="100000"
-                    step="10000"
-                    value={maxPrice}
-                    onChange={handleMinPriceChange}
-                    style={{
-                      width: "100%",
-                      marginBottom: "0px",
-                      padding: "0px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginTop: "0px",
-                    }}
-                  >
-                    <p>10000</p>
-
-                    <p>
-                      <strong>{maxPrice}</strong>
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <h3>FILTER BY RATINGS</h3>
-                  <div className="inputs">
-                    <label>
-                      <input
-                        type="radio"
-                        name="5 STARS AND BELOW"
-                        value="5 STARS AND BELOW"
-                        checked={selectedRating === "5 STARS AND BELOW"}
-                        onChange={(event) => handleSelectRating(event)}
-                      />
-                      5 stars and below
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="4 STARS AND BELOW"
-                        value="4 STARS AND BELOW"
-                        checked={selectedRating === "4 STARS AND BELOW"}
-                        onChange={(event) => handleSelectRating(event)}
-                      />
-                      4 stars and below
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="3 STARS AND BELOW"
-                        value="3 STARS AND BELOW"
-                        checked={selectedRating === "3 STARS AND BELOW"}
-                        onChange={(event) => handleSelectRating(event)}
-                      />
-                      3 stars and below
-                    </label>
-                    <label>
-                      <input
-                        type="radio"
-                        name="BELOW 3 STARS"
-                        value="BELOW 3 STARS"
-                        checked={selectedRating === "BELOW 3 STARS"}
-                        onChange={(event) => handleSelectRating(event)}
-                      />
-                      Below 3 stars
-                    </label>
-                  </div>
-                </div>
-              </div>
             </div>
-          )}
-        </div>
-        <div style={{ marginTop: "1rem" }}>
-          <Link to="/" className="back--button">
-            &larr; Back
-          </Link>
+            <div style={{ marginTop: "1rem" }}>
+              <Link to="/" className="back--button">
+                &larr; Back
+              </Link>
 
-          <motion.div
-            className="all--products"
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transform={{ duration: 0.5 }}
-          >
-            {displayedData.length === 0 ? (
-              <h4>No product found!</h4>
-            ) : (
-              displayedData
-                .filter((product) =>
-                  ["home-decoration"].includes(product.category)
-                )
-                .map((product) => (
-                  <ProductCard
-                    id={product.id}
-                    title={product.title}
-                    img={product.thumbnail}
-                    rating={product.rating}
-                    price={product.price}
-                    key={product.id}
-                    discountPercentage={product.discountPercentage}
-                  />
-                ))
-            )}
-          </motion.div>
+              <motion.div
+                className="all--products"
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transform={{ duration: 0.5 }}
+              >
+                {displayedData.length === 0 ? (
+                  <h4>No product found!</h4>
+                ) : (
+                  displayedData
+                    .filter((product) =>
+                      ["home-decoration"].includes(product.category)
+                    )
+                    .map((product) => (
+                      <ProductCard
+                        id={product.id}
+                        title={product.title}
+                        img={product.thumbnail}
+                        rating={product.rating}
+                        price={product.price}
+                        key={product.id}
+                        discountPercentage={product.discountPercentage}
+                      />
+                    ))
+                )}
+              </motion.div>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

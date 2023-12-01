@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import FadeLoader from "react-spinners/FadeLoader";
-
+import Freeloader from "../Components/Freeloader";
 import Electronics from "../electronics.jpg";
 import Cosmetics from "../Skin care.jpg";
 import Groceries from "../Groceries.jpg";
@@ -30,13 +29,7 @@ const Intro = () => {
     >
       {isLoading ? (
         <div style={{ marginTop: "5rem" }}>
-          <FadeLoader
-            color={"#FF0000"}
-            loading={isLoading}
-            size={300}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          <Freeloader />
         </div>
       ) : (
         <div className="categories--section">

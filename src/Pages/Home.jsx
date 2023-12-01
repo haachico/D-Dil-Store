@@ -142,7 +142,7 @@ const Home = () => {
     <div className="main--page">
       <input
         type="text"
-        placeholder=" Search "
+        placeholder=" Search with product name"
         onChange={(event) => setSearchText(event.target.value)}
         className="search"
       />

@@ -25,7 +25,12 @@ const Cart = () => {
   return (
     <div style={{ marginTop: "100px" }}>
       {cartItems.length === 0 ? (
-        <h4>No items in the cart.</h4>
+        <div>
+          <h4>No items in the cart.</h4>
+          <Link to="/home" style={{ color: "red", fontWeight: "600" }}>
+            Shop now.
+          </Link>
+        </div>
       ) : (
         <div className="cart--page">
           {

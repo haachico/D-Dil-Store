@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Context } from "..";
 import CartCard from "../Components/CartCard";
+import Modal from "../Components/Modal";
 
 const Checkout = () => {
   const [contact, setContact] = useState({
@@ -16,13 +17,20 @@ const Checkout = () => {
     phoneNumber: "",
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isContactFormShown, setIsContactFormShown] = useState(false);
   const [contactsData, setContactsData] = useState([]);
   const { cartItems, setCartItems, quantity } = useContext(Context);
   const [selectedAddress, setSelectedAddress] = useState("");
   const [buttonText, setButtonText] = useState("Place Order");
 
-  console.log(cartItems, "CART ITEMS");
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   const cartTotal = cartItems.reduce(
     (acc, curr) => acc + curr.price * 70 * quantity,
@@ -43,7 +51,8 @@ const Checkout = () => {
   console.log(contact);
 
   const handleAddAddress = () => {
-    setIsContactFormShown(true);
+    // setIsContactFormShown(true);
+    openModal();
   };
 
   const handleCancelClick = () => {
@@ -56,7 +65,6 @@ const Checkout = () => {
     );
 
     if (isFormValid) {
-      setIsContactFormShown(false);
       setContactsData([...contactsData, contact]);
       setContact({
         firstName: "",
@@ -70,6 +78,7 @@ const Checkout = () => {
     } else {
       alert("*Please fill in all the fields");
     }
+    setIsModalOpen(false);
   };
 
   const handleClearClick = () => {
@@ -83,8 +92,6 @@ const Checkout = () => {
       phoneNumber: "",
     });
   };
-
-  console.log(contact, "Contact");
 
   const handleDelete = (name) => {
     setContactsData(contactsData.filter((e) => e.firstName !== name));
@@ -132,24 +139,24 @@ const Checkout = () => {
                   {console.log(selectedAddress, "SELECTED ADR")}
                   <p>
                     {" "}
-                    <strong>Name</strong>: {`${e.firstName} ${e.lastName}`}{" "}
+                    <strong>Name:</strong> {`${e.firstName} ${e.lastName}`}{" "}
                   </p>
                   <p>
                     {" "}
-                    <strong>Address</strong>: {e.address}{" "}
+                    <strong>Address: </strong> {e.address}{" "}
                   </p>
                   <p>
-                    <strong>Pin code </strong>: {e.pincode}
+                    <strong>Pin code: </strong> {e.pincode}
                   </p>
                   <p>
-                    <strong>City</strong> : {e.city}
+                    <strong>City: </strong> {e.city}
                   </p>
                   <p>
-                    <strong>State</strong>: {e.state}
+                    <strong>State:</strong> {e.state}
                   </p>
                   <p>
                     {" "}
-                    <strong>Contact Number</strong>: {e.phoneNumber}{" "}
+                    <strong>Contact Number: </strong> {e.phoneNumber}{" "}
                   </p>
                   <button
                     onClick={() => handleDelete(e.firstName)}
@@ -161,77 +168,90 @@ const Checkout = () => {
               </label>
             </div>
           ))}
-          <button onClick={handleAddAddress} className="add--address--btn">
+          <button onClick={openModal} className="add--address--btn">
             {" "}
             <i class="fa-solid fa-plus"></i> {""}Add Address
           </button>
-          {isContactFormShown && (
-            <form className="form">
-              <label htmlFor="firstName">First Name : </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={contact.firstName}
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="lastName">Last Name : </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={contact.lastName}
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="address">Address : </label>
-              <textarea
-                className="textArea"
-                id="address"
-                name="address"
-                value={contact.address}
-                onChange={(e) => handleChange(e)}
-                required
-              />
-              <label htmlFor="pincode">Pin code: </label>
-              <input
-                type="number"
-                id="pincode"
-                name="pincode"
-                value={contact.pincode}
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="city">City : </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={contact.city}
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="state">State: </label>
-              <input
-                type="text"
-                id="state"
-                name="state"
-                value={contact.state}
-                onChange={(e) => handleChange(e)}
-              />
-              <label htmlFor="mobileNum">Contact No. :</label>
-              <input
-                type="text"
-                id="mobileNum"
-                name="phoneNumber"
-                value={contact.phoneNumber}
-                onChange={(e) => handleChange(e)}
-              />
+          {
+            <Modal isOpen={isModalOpen} onClose={closeModal}>
+              <form>
+                <h4>Enter the address : </h4>
+                <div className="form--content">
+                  <div>
+                    <label htmlFor="firstName">First Name: </label>
+                    <input
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      value={contact.firstName}
+                      onChange={(e) => handleChange(e)}
+                    />
+                    <label htmlFor="city">City: </label>
+                    <input
+                      type="text"
+                      id="city"
+                      name="city"
+                      value={contact.city}
+                      onChange={(e) => handleChange(e)}
+                    />
 
-              <div className="form--btns">
-                <button onClick={handleSaveClick}>Save</button>
-                <button onClick={handleClearClick}>Clear</button>
-                <button onClick={handleCancelClick}>Cancel</button>
-              </div>
-            </form>
-          )}
+                    <label htmlFor="address">Address: </label>
+                    <textarea
+                      className="textArea"
+                      id="address"
+                      name="address"
+                      value={contact.address}
+                      onChange={(e) => handleChange(e)}
+                      required
+                    />
+
+                    <label htmlFor="pincode">Pin code: </label>
+                    <input
+                      type="number"
+                      id="pincode"
+                      name="pincode"
+                      value={contact.pincode}
+                      onChange={(e) => handleChange(e)}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="lastName">Last Name: </label>
+                    <input
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      value={contact.lastName}
+                      onChange={(e) => handleChange(e)}
+                    />
+
+                    <label htmlFor="state">State: </label>
+                    <input
+                      type="text"
+                      id="state"
+                      name="state"
+                      value={contact.state}
+                      onChange={(e) => handleChange(e)}
+                    />
+
+                    <label htmlFor="mobileNum">Contact No.:</label>
+                    <input
+                      type="text"
+                      id="mobileNum"
+                      name="phoneNumber"
+                      value={contact.phoneNumber}
+                      onChange={(e) => handleChange(e)}
+                    />
+
+                    <div className="form--btns">
+                      <button onClick={handleSaveClick}>Save</button>
+                      <button onClick={handleClearClick}>Clear</button>
+                      <button onClick={handleCancelClick}>Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </Modal>
+          }
         </div>
         <div>
           {selectedAddress && (
