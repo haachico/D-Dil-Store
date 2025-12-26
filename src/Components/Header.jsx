@@ -16,7 +16,7 @@ const Header = () => {
     const token = localStorage.getItem('authToken');
     const userData = localStorage.getItem('userData');
     
-    if (token && userData) {
+    if (token || userData) {
       setIsAuthenticated(true);
       setUser(JSON.parse(userData));
     }

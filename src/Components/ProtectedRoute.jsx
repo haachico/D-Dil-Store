@@ -7,8 +7,9 @@ const ProtectedRoute = ({ children }) => {
   const location = useLocation();
 
   // Check if user is logged in (has both token and userData)
-  const isLoggedIn = token && userData;
+  const isLoggedIn = !!(token && userData);
 
+  console.log(isLoggedIn,"check");
   // If user is authenticated, render the component
   if (isLoggedIn) {
     return children;
