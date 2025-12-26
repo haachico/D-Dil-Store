@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -6,7 +6,7 @@ import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Home = () => {
   const {
-    data,
+    // data,
     isMobileView,
     isTabletView,
     toggleFilter,
@@ -23,6 +23,7 @@ const Home = () => {
   const [isCosmeticsSelected, setIsCosmeticsSelected] = useState(false);
   const [isGroceriesSelected, setIsGroceriesSelected] = useState(false);
   const [isHomeDecorSelected, setIsHomeDecorSelected] = useState(false);
+  const [data, setData] = useState([]);
 
   console.log(isFilterOpen, "ISFILTER OPEN");
 
@@ -38,105 +39,123 @@ const Home = () => {
 
   console.log(isELectronicsSelected, "ELECTRONIC SELECTED");
 
-  const handleSortClick = (e) => {
-    setSelectedSort(e.target.value);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getAllProducts");
+        const result = await response.json();
+        console.log(result, "FETCHED PRODUCTS");
+        setData(result.data);
+      } catch (error) {
+        // setIsError(true);
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  const sortedProducts =
-    selectedSort === "HIGH TO LOW"
-      ? [...data].sort((a, b) => b.price - a.price)
-      : selectedSort === "LOW TO HIGH"
-      ? [...data].sort((a, b) => a.price - b.price)
-      : data;
+    fetchProducts();
+  }, []);
 
-  const handleMinPriceChange = (event) => {
-    setMaxPrice(Math.round(event.target.value));
-  };
+  // const handleSortClick = (e) => {
+  //   setSelectedSort(e.target.value);
+  // };
 
-  const rangedPrice = sortedProducts.filter(
-    (product) => product.price * 70 <= maxPrice
-  );
+  // const sortedProducts =
+  //   selectedSort === "HIGH TO LOW"
+  //     ? [...data].sort((a, b) => b.price - a.price)
+  //     : selectedSort === "LOW TO HIGH"
+  //     ? [...data].sort((a, b) => a.price - b.price)
+  //     : data;
 
-  const handleSelectRating = (e) => {
-    setSelectedRating(e.target.value);
-  };
+  // const handleMinPriceChange = (event) => {
+  //   setMaxPrice(Math.round(event.target.value));
+  // };
 
-  console.log(rangedPrice, "RANGED PRICE");
-  const sortedByRatings =
-    selectedRating === "5 STARS AND BELOW"
-      ? rangedPrice.filter((product) => product.rating <= 5)
-      : selectedRating === "4 STARS AND BELOW"
-      ? rangedPrice.filter((product) => product.rating <= 4)
-      : selectedRating === "3 STARS AND BELOW"
-      ? rangedPrice.filter((product) => product.rating <= 3)
-      : rangedPrice.filter((product) => product.rating < 3);
+  // const rangedPrice = sortedProducts.filter(
+  //   (product) => product.price * 70 <= maxPrice
+  // );
 
-  const handleELectronicsCheckBox = (e) => {
-    const isChecked = e.target.checked;
-    setIsELectronicsSelected(isChecked);
-  };
+  // const handleSelectRating = (e) => {
+  //   setSelectedRating(e.target.value);
+  // };
 
-  const handleCosmeticsCheckBox = (e) => {
-    const isChecked = e.target.checked;
-    setIsCosmeticsSelected(isChecked);
-  };
+  // console.log(rangedPrice, "RANGED PRICE");
+  // const sortedByRatings =
+  //   selectedRating === "5 STARS AND BELOW"
+  //     ? rangedPrice.filter((product) => product.rating <= 5)
+  //     : selectedRating === "4 STARS AND BELOW"
+  //     ? rangedPrice.filter((product) => product.rating <= 4)
+  //     : selectedRating === "3 STARS AND BELOW"
+  //     ? rangedPrice.filter((product) => product.rating <= 3)
+  //     : rangedPrice.filter((product) => product.rating < 3);
 
-  const handleGroceriesCheckBox = (e) => {
-    const isChecked = e.target.checked;
-    setIsGroceriesSelected(isChecked);
-  };
+  // const handleELectronicsCheckBox = (e) => {
+  //   const isChecked = e.target.checked;
+  //   setIsELectronicsSelected(isChecked);
+  // };
 
-  const handleHomeDecorCheckBox = (e) => {
-    const isChecked = e.target.checked;
-    setIsHomeDecorSelected(isChecked);
-  };
+  // const handleCosmeticsCheckBox = (e) => {
+  //   const isChecked = e.target.checked;
+  //   setIsCosmeticsSelected(isChecked);
+  // };
 
-  //In Mail App or others apps in which we did/ used checkboxes before, more of than one info of the same product we were checking. For eg , in mail app, if we clicked on unread Msgs checkbox, all unread Msgs were getting displayed/fltered. And then if we clicked on Starred msg, starred property of the already filtered unreadMsgs was being checked. But here in this context below, if we try doing with with the previous logic, if we checkbox isElectronic, smartphones or laptops category products were getting filtered, and then we checkbox another categor like cosmetic at the same time, there won't be cosmetic category products in the already filtered Electronic products (becuase we ares setting new array with every filter as we have used Let and then reassigning). If we have to checkbox infos of more than one product, unlike before, we can do the below method. Bacsially below, we are using And logic. With every click on check, those properties that are checcked are getting added to the array and with every uncheck, those proerties are getting removied. And based on the array, we are displaying the data, and if array length is empty--that is when all are unchecked--all data is displayed.
+  // const handleGroceriesCheckBox = (e) => {
+  //   const isChecked = e.target.checked;
+  //   setIsGroceriesSelected(isChecked);
+  // };
 
-  let displayedCategories = [];
+  // const handleHomeDecorCheckBox = (e) => {
+  //   const isChecked = e.target.checked;
+  //   setIsHomeDecorSelected(isChecked);
+  // };
 
-  displayedCategories = isELectronicsSelected
-    ? displayedCategories.concat(["smartphones", "laptops"])
-    : displayedCategories;
+  // //In Mail App or others apps in which we did/ used checkboxes before, more of than one info of the same product we were checking. For eg , in mail app, if we clicked on unread Msgs checkbox, all unread Msgs were getting displayed/fltered. And then if we clicked on Starred msg, starred property of the already filtered unreadMsgs was being checked. But here in this context below, if we try doing with with the previous logic, if we checkbox isElectronic, smartphones or laptops category products were getting filtered, and then we checkbox another categor like cosmetic at the same time, there won't be cosmetic category products in the already filtered Electronic products (becuase we ares setting new array with every filter as we have used Let and then reassigning). If we have to checkbox infos of more than one product, unlike before, we can do the below method. Bacsially below, we are using And logic. With every click on check, those properties that are checcked are getting added to the array and with every uncheck, those proerties are getting removied. And based on the array, we are displaying the data, and if array length is empty--that is when all are unchecked--all data is displayed.
 
-  displayedCategories = isCosmeticsSelected
-    ? displayedCategories.concat(["fragrances", "skincare"])
-    : displayedCategories;
+  // let displayedCategories = [];
 
-  displayedCategories = isGroceriesSelected
-    ? displayedCategories.concat(["groceries"])
-    : displayedCategories;
+  // displayedCategories = isELectronicsSelected
+  //   ? displayedCategories.concat(["smartphones", "laptops"])
+  //   : displayedCategories;
 
-  displayedCategories = isHomeDecorSelected
-    ? displayedCategories.concat(["home-decoration"])
-    : displayedCategories;
+  // displayedCategories = isCosmeticsSelected
+  //   ? displayedCategories.concat(["fragrances", "skincare"])
+  //   : displayedCategories;
 
-  console.log(displayedCategories, "DISPLAYED CATEGORIES");
+  // displayedCategories = isGroceriesSelected
+  //   ? displayedCategories.concat(["groceries"])
+  //   : displayedCategories;
 
-  let displayedProducts = sortedByRatings;
+  // displayedCategories = isHomeDecorSelected
+  //   ? displayedCategories.concat(["home-decoration"])
+  //   : displayedCategories;
 
-  displayedProducts =
-    displayedCategories.length === 0
-      ? displayedProducts
-      : displayedProducts.filter((product) =>
-          displayedCategories.includes(product.category)
-        );
+  // console.log(displayedCategories, "DISPLAYED CATEGORIES");
 
-  const displayedData = displayedProducts.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchText.toLowerCase()) ||
-      product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchText.toLowerCase())
-  );
-  console.log(isError, "IS ERROR");
+  // let displayedProducts = sortedByRatings;
 
-  if (isError) {
-    return (
-      <div>
-        <h2>{isError.toString()}</h2>
-      </div>
-    );
-  }
+  // displayedProducts =
+  //   displayedCategories.length === 0
+  //     ? displayedProducts
+  //     : displayedProducts.filter((product) =>
+  //         displayedCategories.includes(product.category)
+  //       );
+
+  // const displayedData = displayedProducts.filter(
+  //   (product) =>
+  //     product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+  //     product.brand.toLowerCase().includes(searchText.toLowerCase()) ||
+  //     product.category.toLowerCase().includes(searchText.toLowerCase())
+  // );
+  // console.log(isError, "IS ERROR");
+
+  // if (isError) {
+  //   return (
+  //     <div>
+  //       <h2>{isError.toString()}</h2>
+  //     </div>
+  //   );
+  // }
+
+  let displayedData = data;
 
   return (
     <div className="main--page">
@@ -200,7 +219,7 @@ const Home = () => {
                           max="100000"
                           step="10000"
                           value={maxPrice}
-                          onChange={handleMinPriceChange}
+                          // onChange={handleMinPriceChange}
                           style={{
                             width: "100%",
                             marginBottom: "0px",
@@ -362,7 +381,7 @@ const Home = () => {
                     max="100000"
                     step="10000"
                     value={maxPrice}
-                    onChange={handleMinPriceChange}
+                    // onChange={handleMinPriceChange}
                     style={{
                       width: "100%",
                       marginBottom: "0px",

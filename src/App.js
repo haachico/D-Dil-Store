@@ -7,7 +7,8 @@ import Layout from "./Components/Layout";
 import Home from "./Pages/Home";
 import Cart from "./Pages/Cart";
 import Wishlist from "./Pages/Wishlist";
-import Login from "./Pages/Login";
+import ProtectedRoute from "./Components/ProtectedRoute";
+// import Login from "./Pages/Login";
 import Reviews from "./Pages/Reviews";
 import About from "./Pages/About";
 import HostLayout from "./Components/HostLayout";
@@ -18,6 +19,8 @@ import HomeDecor from "./Pages/HomeDecor";
 import DetailsPage from "./Pages/DetailsPage";
 import Checkout from "./Pages/Checkout";
 import Error from "./Pages/Error";
+import Signup from "./Pages/auth/Signup";
+import Login from "./Pages/auth/Login";
 
 export default function App() {
   return (
@@ -26,9 +29,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Intro />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
             <Route path="home" element={<Home />} />
-            <Route path="cart" element={<Cart />} />
-            <Route path="wishlist" element={<Wishlist />} />
+            <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+            <Route path="wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
             <Route path="auth" element={<Login />} />
             <Route path="electronics" element={<Electronics />} />
             <Route path="cosmetics" element={<Cosmetics />} />
