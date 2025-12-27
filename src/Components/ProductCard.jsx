@@ -13,22 +13,26 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
     handleRemoveFromCart,
   } = useContext(Context);
 
+  const user = JSON.parse(localStorage.getItem("userData"));
+
   const heartIcon = () => {
-    if (wishlistItems.map((product) => product.id === id).includes(true)) {
-      return (
-        <i
-          class="fa-solid fa-heart"
-          onClick={() => handleRemoveFromWishlist(id)}
-        ></i>
-      );
-    } else {
-      return (
-        <i
-          class="fa-regular fa-heart"
-          onClick={() => handleAddToWishlist(id)}
-        ></i>
-      );
-    }
+    const isInWishlist = wishlistItems.some((product) => product.id === Number(id));
+  
+    console.log(isInWishlist, "WISHLIST CHECK");
+    
+    return isInWishlist ? (
+      <i
+        className="fa-solid fa-heart"
+        onClick={() => handleRemoveFromWishlist(user?.id, id)}
+        style={{ cursor: "pointer", color: "red" }}
+      ></i>
+    ) : (
+      <i
+        className="fa-regular fa-heart"
+        onClick={() => handleAddToWishlist(user?.id, id)}
+        style={{ cursor: "pointer" }}
+      ></i>
+    );
   };
 
   const cartIcon = () => {

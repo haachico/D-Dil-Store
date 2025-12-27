@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { Context } from "..";
 import ProductCard from "../Components/ProductCard";
@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const Wishlist = () => {
   const { wishlistItems } = useContext(Context);
+
+
   return (
     <div style={{ marginTop: "100px" }}>
       {wishlistItems.length === 0 ? (

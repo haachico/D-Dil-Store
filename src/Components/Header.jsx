@@ -48,7 +48,7 @@ const Header = () => {
       {console.log(searchText)}
       <div>
         <div>
-          {isAuthenticated && user ? (
+          {isAuthenticated  ? (
             <p className="auth--text">Welcome, {user.firstName} {user.lastName}!</p>
           ) : (
             <p className="auth--text"> You are not logged in.</p>

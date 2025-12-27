@@ -35,35 +35,85 @@ export const Provider = ({ children }) => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const getData = () => {
+   const getWishListData = async () => {
+      try {
+  
+        const response= await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getWishListITems", {
+          method: "POST", 
+          headers : {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id })
+        });
+  
+        const data = await response.json();
+        console.log(data, "WISHLIST DATA");
+  
+        setWishlistItems(data.data);
+      } catch (err) {
+        setIsError(err);
+      }
+    };
+  
+    useEffect(() => {
+      getWishListData();
+    }, []);
+
+  const handleAddToWishlist = async (userId, id) => {
+   try {
+    const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/addWishlistItem", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId, productId: id }),
+    });
+
+    const data = await response.json();
+    console.log(data, "WISHLIST DATA");
+
+
+    getWishListData();
+
+    // if (response.ok) {
+    //   // Add item to wishlist state
+    //   const product = data.product || data;
+    //   setWishlistItems([...wishlistItems, product]);
+    //   toast.success("Item added to wishlist!", {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // } else {
+    //   toast.error(data.message || "Failed to add to wishlist", {
+    //     position: toast.POSITION.TOP_RIGHT,
+    //   });
+    // }
+   }
+   catch(error) {
+    console.error("Error adding to wishlist:", error);
+    toast.error("Error adding to wishlist", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+   }
+  };
+
+  const handleRemoveFromWishlist = async (userId, id) => {
+   
     try {
-      const response = allData;
-
-      setData(response.products);
-    } catch (err) {
-      setIsError(err);
+      const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/removeWishlistItem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId, productId: id }),
+      });
+      getWishListData();
     }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const handleAddToWishlist = (id) => {
-    setWishlistItems([
-      ...wishlistItems,
-      ...data.filter((product) => product.id === id),
-    ]);
-    toast.success("Item added to wishlist!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
-
-  const handleRemoveFromWishlist = (id) => {
-    setWishlistItems(wishlistItems.filter((product) => product.id !== id));
-    toast.success("Item removed from wishlist!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+    catch(error) {
+      console.error("Error removing from wishlist:", error);
+      toast.error("Error removing from wishlist", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
   };
 
   const handleAddToCart = (id) => {
