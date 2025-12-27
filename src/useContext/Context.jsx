@@ -36,12 +36,13 @@ export const Provider = ({ children }) => {
   };
 
    const getWishListData = async () => {
-      try {
+      try { 
   
-        const response= await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getWishListITems", {
+        const response= await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getWishlistItems", {
           method: "POST", 
           headers : {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('authToken')}`
           },
           body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id })
         });
@@ -54,10 +55,34 @@ export const Provider = ({ children }) => {
         setIsError(err);
       }
     };
+
+    const getCartData= async () => {
+    
+      try {
+
+        const response= await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getCartItems", {
+          method: "POST", 
+          headers : {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+          },
+          body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id })
+        });
+
+        const data = await response.json();
+
+        setCartItems(data.data);
+      }
+      catch(error){
+        setIsError(error);
+      }
+    
+    }
   
-    useEffect(() => {
-      getWishListData();
-    }, []);
+    // useEffect(() => {
+    //   getWishListData();
+    //   getCartData();
+    // }, []);
 
   const handleAddToWishlist = async (userId, id) => {
    try {
@@ -65,6 +90,7 @@ export const Provider = ({ children }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem('authToken')}`
       },
       body: JSON.stringify({ userId, productId: id }),
     });
@@ -103,6 +129,7 @@ export const Provider = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('authToken')}`
         },
         body: JSON.stringify({ userId, productId: id }),
       });
@@ -116,22 +143,50 @@ export const Provider = ({ children }) => {
     }
   };
 
-  const handleAddToCart = (id) => {
-    setCartItems([
-      ...cartItems,
-      ...data.filter((product) => product.id === id),
-    ]);
-    toast.success("Item added to cart!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+  const handleAddToCart = async (userId, id) => {
+  
+    try {
+
+      const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/addCartItem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify({ userId, productId: id }),
+      });
+
+      const data =  await response.json();
+
+
+      getCartData();
+    }
+    catch(error) {
+      console.error("Error adding to cart:", error);
+    }
   };
 
-  const handleRemoveFromCart = (id) => {
-    setCartItems(cartItems.filter((product) => product.id !== id));
-    toast.success("Item removed from cart!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
-  };
+  const handleRemoveFromCart = async (id) => {
+   
+
+    try {
+      const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/removeCartItem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id, productId: id }),
+      });
+
+      getCartData();
+      
+  }
+    catch(error) {
+      console.error("Error removing from cart:", error);
+    }
+
+}
   console.log(data, "DATA");
   console.log(wishlistItems, "WISHLIST ITEMS");
   console.log(cartItems, "CART ITEMS");

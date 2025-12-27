@@ -12,16 +12,21 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
     handleRemoveFromWishlist,
     handleAddToCart,
     handleRemoveFromCart,
-    quantity,
-    setQuantity,
+    // quantity,
+    // setQuantity,
   } = useContext(Context);
 
+  const user = JSON.parse(localStorage.getItem("userData"));
+
+  const [quantity, setQuantity] = useState(1);
+
   const heartIcon = () => {
-    if (wishlistItems.map((product) => product.id === id).includes(true)) {
+    const isInWishlist = wishlistItems.some((product) => product.id === Number(id));
+    if (isInWishlist) {
       return (
         <i
           class="fa-solid fa-heart"
-          onClick={() => handleRemoveFromWishlist(id)}
+          onClick={() => handleRemoveFromWishlist(user.id, id)}
         ></i>
       );
     } else {
@@ -35,35 +40,70 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
   };
 
   const cartIcon = () => {
-    if (cartItems.map((product) => product.id === id).includes(true)) {
+    const isInCart = cartItems.some((product) => product.id === Number(id));
+    if (isInCart) {
       return (
         <i
           class="fa-solid fa-cart-shopping"
-          onClick={() => handleRemoveFromCart(id)}
+          onClick={() => handleRemoveFromCart(user.id, id)}
         ></i>
       );
     } else {
       return (
         <i
           class="fa-solid fa-cart-plus"
-          onClick={() => handleAddToCart(id)}
+          onClick={() => handleAddToCart(user.id, id)}
         ></i>
       );
     }
   };
 
-  const decreaseQty = () => {
-    setQuantity((prevState) => prevState - 1);
-    toast.success("Item quantity decreased!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+  const decreaseQty = async () => {
+
+    try {
+
+        let newQty = quantity - 1;
+        setQuantity(newQty >= 0 ? newQty : 0);
+
+        const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/updateCartItemQuantity", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+          },
+          body: JSON.stringify({ userId: user.id, productId: id, quantity: newQty >= 0 ? newQty : 0 }),
+        }); 
+
+      const data =  await response.json();
+      console.log(data, "UPDATE QTY RESPONSE");
+    }
+    catch(error) {
+      console.error("Error decreasing quantity:", error);
+    }
+
+  
   };
 
-  const increaseQty = () => {
-    setQuantity((prevState) => prevState + 1);
-    toast.success("Item quantity increased!", {
-      position: toast.POSITION.TOP_RIGHT,
-    });
+  const increaseQty = async () => {
+    try {
+      let newQty = quantity + 1;
+      setQuantity(newQty);
+
+      const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/updateCartItemQuantity", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify({ userId: user.id, productId: id, quantity: newQty }),
+      });
+
+    const data =  await response.json();
+    console.log(data, "UPDATE QTY RESPONSE");
+    }
+    catch (error) {
+      console.error("Error increasing quantity:", error);
+    }
   };
 
   return (

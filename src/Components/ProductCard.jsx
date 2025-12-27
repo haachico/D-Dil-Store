@@ -36,7 +36,8 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
   };
 
   const cartIcon = () => {
-    if (cartItems.map((product) => product.id === id).includes(true)) {
+    const isInCart = cartItems.some((product) => product.id === Number(id));
+    if (isInCart) {
       return (
         <i
           class="fa-solid fa-cart-shopping"
@@ -47,7 +48,7 @@ const ProductCard = ({ img, id, title, rating, price, discountPercentage }) => {
       return (
         <i
           class="fa-solid fa-cart-plus"
-          onClick={() => handleAddToCart(id)}
+          onClick={() => handleAddToCart(user.id, id)}
         ></i>
       );
     }
