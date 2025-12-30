@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "..";
@@ -6,6 +6,7 @@ import CartCard from "../Components/CartCard";
 
 const Cart = () => {
   const { cartItems, quantity, setQuantity } = useContext(Context);
+
 
   console.log(cartItems, "CART ITEMS");
 
@@ -43,6 +44,7 @@ const Cart = () => {
                   rating={product.rating}
                   price={product.price}
                   key={product.id}
+                  qty={product.quantity}
                   discountPercentage={product.discountPercentage}
                 />
               ))}

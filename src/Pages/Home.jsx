@@ -1,10 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import ProductCard from "../Components/ProductCard";
 import { Context } from "..";
 const Home = () => {
+  const location = useLocation();
+  const categoryId = location.state?.categoryId;
+
   const {
     // data,
     isMobileView,
@@ -47,13 +50,34 @@ const Home = () => {
         console.log(result, "FETCHED PRODUCTS");
         setData(result.data);
       } catch (error) {
-        // setIsError(true);
         console.error("Error fetching products:", error);
       }
     };
 
-    fetchProducts();
-  }, []);
+    const fetchProductsByCategory = async (categoryId) => {
+      try {
+        const response = await fetch("http://localhost:8080/d-dil-store-backend/config/api/Products/getProductsByCategory", {
+          method: "POST",
+          headers: {  
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ categoryId: categoryId })
+        });
+
+        const result = await response.json();
+        console.log(result, "FETCHED PRODUCTS BY CATEGORY");
+        setData(result.data);
+      } catch(error) {
+        console.error("Error fetching products by category:", error);
+      }
+    };
+
+    if (categoryId) {
+      fetchProductsByCategory(categoryId);
+    } else {
+      fetchProducts();
+    }
+  }, [categoryId]);
 
   // const handleSortClick = (e) => {
   //   setSelectedSort(e.target.value);

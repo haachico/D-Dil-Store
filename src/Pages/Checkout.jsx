@@ -14,7 +14,7 @@ const Checkout = () => {
     city: "",
     state: "",
     address: "",
-    phoneNumber: "",
+    contactNo: "",
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -59,13 +59,29 @@ const Checkout = () => {
     setIsContactFormShown(false);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async () => {
     const isFormValid = Object.values(contact).every(
       (value) => value.trim() !== ""
     );
 
+    console.log(isFormValid, Object.values(contact));
+
     if (isFormValid) {
-      setContactsData([...contactsData, contact]);
+      
+      const response = fetch(
+        "http://localhost:8080/d-dil-store-backend/config/api/Users/saveAddress", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+          },
+          body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id, ...contact }),
+        }
+      );
+
+      console.log("Address saved:", contact);
+      setContactsData((prevData) => [...prevData, contact]);      
+      
       setContact({
         firstName: "",
         lastName: "",
@@ -73,7 +89,7 @@ const Checkout = () => {
         city: "",
         state: "",
         address: "",
-        phoneNumber: "",
+        contactNo: "",
       });
     } else {
       alert("*Please fill in all the fields");
@@ -89,7 +105,7 @@ const Checkout = () => {
       city: "",
       state: "",
       address: "",
-      phoneNumber: "",
+      contactNo: "",
     });
   };
 
@@ -156,7 +172,7 @@ const Checkout = () => {
                   </p>
                   <p>
                     {" "}
-                    <strong>Contact Number: </strong> {e.phoneNumber}{" "}
+                    <strong>Contact Number: </strong> {e.contactNo}{" "}
                   </p>
                   <button
                     onClick={() => handleDelete(e.firstName)}
@@ -237,8 +253,8 @@ const Checkout = () => {
                     <input
                       type="text"
                       id="mobileNum"
-                      name="phoneNumber"
-                      value={contact.phoneNumber}
+                      name="contactNo"
+                      value={contact.contactNo}
                       onChange={(e) => handleChange(e)}
                     />
 

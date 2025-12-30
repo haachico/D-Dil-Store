@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Context } from "..";
 
-const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
+const CartCard = ({ img, id, title, rating, price, discountPercentage,  qty }) => {
   const {
     cartItems,
     wishlistItems,
@@ -18,7 +18,7 @@ const CartCard = ({ img, id, title, rating, price, discountPercentage }) => {
 
   const user = JSON.parse(localStorage.getItem("userData"));
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState( qty || 1);  
 
   const heartIcon = () => {
     const isInWishlist = wishlistItems.some((product) => product.id === Number(id));

@@ -1,25 +1,54 @@
-import { useContext } from "react";
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Context } from "..";
 
 const DetailsPage = () => {
   const { data, handleAddToCart, cartItems } = useContext(Context);
-  const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
-    useAuth0();
 
+  const [product, setProduct] = useState(null);
+  // const { loginWithRedirect, loginWithPopup, logout, isAuthenticated, user } =
+  //   useAuth0();
+
+  const navigate = useNavigate();
   const { productId } = useParams();
 
-  const product = data.find((product) => product.id == productId);
+  // const product = data.find((product) => product.id == productId);
 
-  console.log(product, "product");
+  // console.log(product, "product");
 
-  console.log(productId);
+  // console.log(productId);
 
-  let location = useLocation();
+  // let location = useLocation();
 
-  console.log(location);
+  // console.log(location);
+
+
+  const fetchProductDetails = async() => {
+    try {
+
+      const respones = await fetch(`http://localhost:8080/d-dil-store-backend/config/api/Products/getProductDetails`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ productId: productId }),
+      });
+
+      const productData = await respones.json();
+
+      console.log(productData, "PRODUCT DETAILS");
+      setProduct(productData.data);
+    }
+    catch (error) {
+     console.error("Error fetching product details:", error); 
+    }
+  }
+
+  useEffect(() => {
+    fetchProductDetails();
+  }, []);
 
   return (
     <div style={{ marginTop: "1rem" }}>
@@ -72,14 +101,11 @@ const DetailsPage = () => {
             <div className="details--btn">
               {cartItems
                 .map((product) => product.id == productId)
-                .includes(true) ? (
-                isAuthenticated ? (
-                  <Link to="/cart" className="go--to--cart--link">
-                    Go to cart
-                  </Link>
-                ) : (
+                .includes(true) ?
                   <button
-                    onClick={() => loginWithPopup()}
+                    onClick={() => {
+                      navigate('/cart')
+                    }}
                     style={{
                       backgroundColor: "white",
                       color: "red",
@@ -92,10 +118,14 @@ const DetailsPage = () => {
                   >
                     Go to cart
                   </button>
-                )
-              ) : (
+                
+              : (
                 <button
-                  onClick={() => handleAddToCart(product.id)}
+                  onClick={() =>{
+                     handleAddToCart(localStorage.getItem("userId"), product?.id, 1)
+
+                    window.location.reload();
+                  }}
                   className="add--to--cart--btn"
                 >
                   Add to cart

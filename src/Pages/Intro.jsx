@@ -40,25 +40,25 @@ const Intro = () => {
           <h1 style={{ marginTop: "3rem" }}>SHOP BY CATEGORY</h1>
           <div className="categories--img">
             <div className="category">
-              <Link to="electronics">
+              <Link to="home" state={{ categoryId:1  }}>
                 <img src={Electronics} alt="ELectronics category" />
                 <h3>ELECTRONICS</h3>
               </Link>
             </div>
             <div className="category">
-              <Link to="cosmetics">
+              <Link to="home" state={{ categoryId: 2 }}>
                 <img src={Cosmetics} alt="Cosmetic category" />
                 <h3>COSMETICS</h3>
               </Link>
             </div>
             <div className="category">
-              <Link to="groceries">
+              <Link to="home" state={{ categoryId: 3 }}>
                 <img src={Groceries} alt="Grocery category" />
                 <h3>GROCERIES</h3>
               </Link>
             </div>
             <div className="category">
-              <Link to="homedecor">
+              <Link to="home" state={{ categoryId: 4 }}>
                 <img src={HomeDecor} alt="Home Decor category" />
                 <h3>HOME DECOR</h3>
               </Link>

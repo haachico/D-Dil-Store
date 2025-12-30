@@ -79,10 +79,10 @@ export const Provider = ({ children }) => {
     
     }
   
-    // useEffect(() => {
-    //   getWishListData();
-    //   getCartData();
-    // }, []);
+    useEffect(() => {
+      getWishListData();
+      getCartData();
+    }, []);
 
   const handleAddToWishlist = async (userId, id) => {
    try {

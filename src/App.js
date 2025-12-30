@@ -35,10 +35,10 @@ export default function App() {
             <Route path="cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
             <Route path="wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
             <Route path="auth" element={<Login />} />
-            <Route path="electronics" element={<Electronics />} />
+            {/* <Route path="electronics" element={<Electronics />} />
             <Route path="cosmetics" element={<Cosmetics />} />
             <Route path="groceries" element={<Groceries />} />
-            <Route path="homedecor" element={<HomeDecor />} />
+            <Route path="homedecor" element={<HomeDecor />} /> */}
             <Route path="products/:productId" element={<DetailsPage />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<Error />} />
