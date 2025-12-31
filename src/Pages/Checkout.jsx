@@ -44,6 +44,12 @@ const Checkout = () => {
         const data = await response.json();
 
         setContactsData( data.data );
+        
+        // Set the default address as selected on page load
+        const defaultAddress = data.data.find(addr => addr.is_default === 1);
+        if (defaultAddress) {
+          setSelectedAddress(defaultAddress.id);
+        }
       }
 
       catch (error) {
@@ -56,6 +62,10 @@ const Checkout = () => {
     fetchAddresses();
 
   }, []);
+
+ let selectedAddressDetails = contactsData.find(addr => addr.id === selectedAddress);
+
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -195,11 +205,12 @@ const Checkout = () => {
                 <input
                   type="radio"
                   name="selectedAddress"
-                  value={JSON.stringify(e)}
-                  checked={
-                   e.is_default === 1
-                  }
-                  onChange={()=> handleDefaultAddress(e.id) }
+                  value={e.id}
+                  checked={selectedAddress === e.id}
+                  onChange={() => {
+                    setSelectedAddress(e.id);
+                    handleDefaultAddress(e.id);
+                  }}
                 />
                 <span>
                   {console.log(selectedAddress, "SELECTED ADR")}
@@ -320,15 +331,15 @@ const Checkout = () => {
           }
         </div>
         <div>
-          {selectedAddress && (
+          {selectedAddressDetails && (
             <div style={{ textAlign: "left", fontSize: "13px" }}>
               <p style={{ fontSize: "14px", textAlign: "left" }}>
                 {" "}
                 <strong>Deliver to :</strong> <p></p>
               </p>
-              <p>{`${selectedAddress.firstName} ${selectedAddress.lastName}`}</p>
+              <p>{`${selectedAddressDetails.first_name} ${selectedAddressDetails.last_name}`}</p>
               <p style={{ fontSize: "13px", textAlign: "left" }}>
-                {`${selectedAddress.address}, ${selectedAddress.city} ${selectedAddress.pincode}, ${selectedAddress.state}. Contact No. : ${selectedAddress.phoneNumber}`}
+                {`${selectedAddressDetails.address}, ${selectedAddressDetails.city} ${selectedAddressDetails.pin_code}, ${selectedAddressDetails.state}. Contact No. : ${selectedAddressDetails.contact_no}`}
               </p>
             </div>
           )}
