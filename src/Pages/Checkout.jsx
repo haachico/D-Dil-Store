@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
@@ -24,6 +24,38 @@ const Checkout = () => {
   const [selectedAddress, setSelectedAddress] = useState("");
   const [buttonText, setButtonText] = useState("Place Order");
 
+
+
+  useEffect(() => {
+
+    const fetchAddresses = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8080/d-dil-store-backend/config/api/Users/getAddresses", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+            },
+            body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id }),
+          }
+        );
+
+        const data = await response.json();
+
+        setContactsData( data.data );
+      }
+
+      catch (error) {
+        console.error("Error fetching addresses:", error);
+
+      }
+    
+    }
+
+    fetchAddresses();
+
+  }, []);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -39,7 +71,7 @@ const Checkout = () => {
 
   const totalDiscount = cartItems.reduce(
     (acc, curr) =>
-      acc + (curr.discountPercentage / 100) * curr.price * 70 * quantity,
+      acc + (curr.discountPercentage / 100) * curr.price * 70 * quantity, 
     0
   );
 
@@ -79,7 +111,9 @@ const Checkout = () => {
         }
       );
 
-      console.log("Address saved:", contact);
+      const data = await response.json();
+
+      console.log("Address saved:", data);
       setContactsData((prevData) => [...prevData, contact]);      
       
       setContact({
@@ -130,6 +164,24 @@ const Checkout = () => {
     }
   };
 
+
+  const handleDefaultAddress = async (id) => {
+
+    const response = await fetch(
+      "http://localhost:8080/d-dil-store-backend/config/api/Users/setDefaultAddress", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('authToken')}`
+        },
+        body: JSON.stringify({ userId: JSON.parse(localStorage.getItem("userData")).id, addressId: id}),
+      }
+    );
+    // setSelectedAddress( JSON.parse( e.target.value ) );
+
+
+  }
+
   return (
     <div style={{ padding: "1rem" }}>
       <Link to="/cart" className="back--button">
@@ -145,24 +197,22 @@ const Checkout = () => {
                   name="selectedAddress"
                   value={JSON.stringify(e)}
                   checked={
-                    JSON.stringify(selectedAddress) === JSON.stringify(e)
+                   e.is_default === 1
                   }
-                  onChange={(e) =>
-                    setSelectedAddress(JSON.parse(e.target.value))
-                  }
+                  onChange={()=> handleDefaultAddress(e.id) }
                 />
                 <span>
                   {console.log(selectedAddress, "SELECTED ADR")}
                   <p>
                     {" "}
-                    <strong>Name:</strong> {`${e.firstName} ${e.lastName}`}{" "}
+                    <strong>Name:</strong> {`${e.first_name} ${e.last_name}`}{" "}
                   </p>
                   <p>
                     {" "}
                     <strong>Address: </strong> {e.address}{" "}
                   </p>
                   <p>
-                    <strong>Pin code: </strong> {e.pincode}
+                    <strong>Pin code: </strong> {e.pin_code}
                   </p>
                   <p>
                     <strong>City: </strong> {e.city}
@@ -172,10 +222,10 @@ const Checkout = () => {
                   </p>
                   <p>
                     {" "}
-                    <strong>Contact Number: </strong> {e.contactNo}{" "}
+                    <strong>Contact Number: </strong> {e.contact_no}{" "}
                   </p>
                   <button
-                    onClick={() => handleDelete(e.firstName)}
+                    onClick={() => handleDelete(e.first_name)}
                     className="delete--address"
                   >
                     Delete
@@ -266,7 +316,7 @@ const Checkout = () => {
                   </div>
                 </div>
               </form>
-            </Modal>
+            </Modal>  
           }
         </div>
         <div>
